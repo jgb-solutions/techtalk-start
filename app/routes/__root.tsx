@@ -8,6 +8,7 @@ import Header from "../components/Header"
 import Footer from "../components/Footer"
 import { Meta, Scripts } from '@tanstack/start'
 import type { ReactNode } from 'react'
+import React from 'react'
 
 export const Route = createRootRoute({
   head: () => ({
@@ -39,6 +40,18 @@ function RootComponent() {
 }
 
 function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
+  const TanStackRouterDevtools =
+    process.env.NODE_ENV === 'production'
+      ? () => null // Render nothing in production
+      : React.lazy(() =>
+        // Lazy load in development
+        import('@tanstack/router-devtools').then((res) => ({
+          default: res.TanStackRouterDevtools,
+          // For Embedded Mode
+          // default: res.TanStackRouterDevtoolsPanel
+        })),
+      )
+
   return (
     <html lang="en" className="h-full" data-theme="cupcake">
       <head>
@@ -50,7 +63,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
         <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png" />
         <link rel="manifest" href="/assets/images/favicon/site.webmanifest" />
       </head>
-      <body className="font-sans antialiased min-h-full bg-center bg-cover"
+      <body className="font-sans antialiased min-h-full bg-center bg-cover bg-gray-300"
       // style={{ backgroundImage: "url('/assets/images/Grunged-paper-Background-1.jpg')" }}
       >
         <Header />
@@ -61,6 +74,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
 
         <ScrollRestoration />
         <Scripts />
+        <TanStackRouterDevtools />
       </body>
     </html>
   )

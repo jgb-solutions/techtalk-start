@@ -11,12 +11,26 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as KontakImport } from './routes/kontak'
+import { Route as EkipImport } from './routes/ekip'
 import { Route as IndexImport } from './routes/index'
 import { Route as PanelisIndexImport } from './routes/panelis/index'
 import { Route as PanelisSpeakerIdImport } from './routes/panelis/$speakerId'
 import { Route as EpizodEpisodeIdImport } from './routes/epizod/$episodeId'
 
 // Create/Update Routes
+
+const KontakRoute = KontakImport.update({
+  id: '/kontak',
+  path: '/kontak',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const EkipRoute = EkipImport.update({
+  id: '/ekip',
+  path: '/ekip',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const IndexRoute = IndexImport.update({
   id: '/',
@@ -53,6 +67,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/ekip': {
+      id: '/ekip'
+      path: '/ekip'
+      fullPath: '/ekip'
+      preLoaderRoute: typeof EkipImport
+      parentRoute: typeof rootRoute
+    }
+    '/kontak': {
+      id: '/kontak'
+      path: '/kontak'
+      fullPath: '/kontak'
+      preLoaderRoute: typeof KontakImport
+      parentRoute: typeof rootRoute
+    }
     '/epizod/$episodeId': {
       id: '/epizod/$episodeId'
       path: '/epizod/$episodeId'
@@ -81,6 +109,8 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ekip': typeof EkipRoute
+  '/kontak': typeof KontakRoute
   '/epizod/$episodeId': typeof EpizodEpisodeIdRoute
   '/panelis/$speakerId': typeof PanelisSpeakerIdRoute
   '/panelis': typeof PanelisIndexRoute
@@ -88,6 +118,8 @@ export interface FileRoutesByFullPath {
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ekip': typeof EkipRoute
+  '/kontak': typeof KontakRoute
   '/epizod/$episodeId': typeof EpizodEpisodeIdRoute
   '/panelis/$speakerId': typeof PanelisSpeakerIdRoute
   '/panelis': typeof PanelisIndexRoute
@@ -96,6 +128,8 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/ekip': typeof EkipRoute
+  '/kontak': typeof KontakRoute
   '/epizod/$episodeId': typeof EpizodEpisodeIdRoute
   '/panelis/$speakerId': typeof PanelisSpeakerIdRoute
   '/panelis/': typeof PanelisIndexRoute
@@ -103,12 +137,26 @@ export interface FileRoutesById {
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/epizod/$episodeId' | '/panelis/$speakerId' | '/panelis'
+  fullPaths:
+    | '/'
+    | '/ekip'
+    | '/kontak'
+    | '/epizod/$episodeId'
+    | '/panelis/$speakerId'
+    | '/panelis'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/epizod/$episodeId' | '/panelis/$speakerId' | '/panelis'
+  to:
+    | '/'
+    | '/ekip'
+    | '/kontak'
+    | '/epizod/$episodeId'
+    | '/panelis/$speakerId'
+    | '/panelis'
   id:
     | '__root__'
     | '/'
+    | '/ekip'
+    | '/kontak'
     | '/epizod/$episodeId'
     | '/panelis/$speakerId'
     | '/panelis/'
@@ -117,6 +165,8 @@ export interface FileRouteTypes {
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  EkipRoute: typeof EkipRoute
+  KontakRoute: typeof KontakRoute
   EpizodEpisodeIdRoute: typeof EpizodEpisodeIdRoute
   PanelisSpeakerIdRoute: typeof PanelisSpeakerIdRoute
   PanelisIndexRoute: typeof PanelisIndexRoute
@@ -124,6 +174,8 @@ export interface RootRouteChildren {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  EkipRoute: EkipRoute,
+  KontakRoute: KontakRoute,
   EpizodEpisodeIdRoute: EpizodEpisodeIdRoute,
   PanelisSpeakerIdRoute: PanelisSpeakerIdRoute,
   PanelisIndexRoute: PanelisIndexRoute,
@@ -140,6 +192,8 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/ekip",
+        "/kontak",
         "/epizod/$episodeId",
         "/panelis/$speakerId",
         "/panelis/"
@@ -147,6 +201,12 @@ export const routeTree = rootRoute
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/ekip": {
+      "filePath": "ekip.tsx"
+    },
+    "/kontak": {
+      "filePath": "kontak.tsx"
     },
     "/epizod/$episodeId": {
       "filePath": "epizod/$episodeId.tsx"

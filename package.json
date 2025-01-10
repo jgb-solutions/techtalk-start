@@ -19,11 +19,14 @@
     "pocketbase": "^0.24.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-icons": "^5.4.0",
     "vinxi": "^0.5.1",
     "zod": "^3.24.1"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.15",
+    "@tanstack/eslint-plugin-router": "^1.92.7",
+    "@tanstack/router-devtools": "^1.95.2",
     "@types/react": "^19.0.4",
     "@types/react-dom": "^19.0.2",
     "@vitejs/plugin-react": "^4.3.4",

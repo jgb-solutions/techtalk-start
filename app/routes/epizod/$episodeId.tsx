@@ -2,15 +2,12 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 import Container from '~/components/Container'
 import Title from '~/components/Title'
 import * as api from '~/services/requests.server'
-import { APP_NAME } from '~/utils/constants'
 import {
-  clx,
   formatTitle,
   getSpeakerName,
   getYouTubeIdFromUrl,
   itHas,
 } from '~/utils/helpers'
-import styles from '~/styles/episode.module.css'
 import { createServerFn } from '@tanstack/start'
 
 const getEpisode = createServerFn({
@@ -44,7 +41,7 @@ function EpisodePage() {
       <article className="bg-tt-yellow overflow-hidden shadow-lg rounded-xl">
         {itHas(youtubeId) && (
           <iframe
-            className={clx(styles.youtube, 'mb-4')}
+            className="mb-4 aspect-video w-full"
             src={`https://www.youtube.com/embed/${youtubeId}`}
             title={episode.title}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -54,7 +51,7 @@ function EpisodePage() {
         <div className="p-4">
           {itHas(episode.speakers.length) && (
             <div className="flex flex-row items-center mb-4">
-              <h4 className="text-lg mr-3">Panelis:</h4>
+              {/* <h4 className="text-lg mr-3">Panelis:</h4> */}
               <div className="flex flex-row items-center">
                 {episode.speakers.map((speaker) => (
                   <Link

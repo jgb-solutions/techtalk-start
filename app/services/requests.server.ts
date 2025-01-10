@@ -53,6 +53,7 @@ export async function fetchEpisodes() {
   })
 }
 
+
 export async function fetchEpisode(episodeId: string) {
   const response = await pb.collection('episodes').getOne<
     PT.EpisodesResponse & {
@@ -81,6 +82,73 @@ export async function fetchEpisode(episodeId: string) {
         ...speaker,
         imageUrl: speakerImageUrl,
         cdnImageUrl: speakerCdnImageUrl
+      }
+    })
+  }
+
+}
+
+export async function fetchSpeakers() {
+  const response = await pb.collection('speakers').getFullList<
+    PT.SpeakersResponse & {
+      expand: {
+        episodes_via_speakers: PT.EpisodesResponse<{ T: object }>[]
+      }
+    }
+  >({
+    expand: 'episodes_via_speakers',
+    sort: '-created'
+  })
+
+  return response.filter(s => s.image).map(({ image, expand, ...speaker }) => {
+    const speakerImageUrl = getModelUrl({ model: speaker, field: image })
+    const speakerCdnImageUrl = getPhotonUrl({ src: speakerImageUrl, quality: 100, width: 250 })
+
+    return {
+      ...speaker,
+      imageUrl: speakerImageUrl,
+      cdnImageUrl: speakerCdnImageUrl,
+      episodes: expand.episodes_via_speakers.sort((a, b) => new Date(a.date) < new Date(b.date) ? 1 : -1).map(({ image, ...episode }) => {
+        const episodeImageUrl = getModelUrl({ model: episode, field: image })
+        const episodeCdnImageUrl = getPhotonUrl({ src: episodeImageUrl, quality: 100, width: 250 })
+        return {
+          ...episode,
+          imageUrl: episodeImageUrl,
+          cdnImageUrl: episodeCdnImageUrl
+        }
+      })
+    }
+  })
+}
+
+export async function fetchSpeaker(speakerId: string) {
+  const response = await pb.collection('speakers').getOne<
+    PT.SpeakersResponse & {
+      expand: {
+        episodes_via_speakers: PT.EpisodesResponse<{ T: object }>[]
+      }
+    }
+  >(speakerId, {
+    expand: 'episodes_via_speakers',
+    sort: '-date'
+  })
+
+  const { image, expand, ...speaker } = response
+
+  const speakerImageUrl = getModelUrl({ model: speaker, field: image })
+  const speakerCdnImageUrl = getPhotonUrl({ src: speakerImageUrl, quality: 100, width: 500 })
+
+  return {
+    ...speaker,
+    imageUrl: speakerImageUrl,
+    cdnImageUrl: speakerCdnImageUrl,
+    episodes: expand.episodes_via_speakers.sort((a, b) => new Date(a.date) < new Date(b.date) ? 1 : -1).map(({ image, ...episode }) => {
+      const episodeImageUrl = getModelUrl({ model: episode, field: image })
+      const episodeCdnImageUrl = getPhotonUrl({ src: episodeImageUrl, quality: 100, width: 250 })
+      return {
+        ...episode,
+        imageUrl: episodeImageUrl,
+        cdnImageUrl: episodeCdnImageUrl
       }
     })
   }
