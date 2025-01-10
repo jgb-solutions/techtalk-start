@@ -117,7 +117,7 @@ function RouteComponent() {
         {speaker.episodes.length > 0 && (
           <div>
             <h2 className="text-3xl font-bold mb-6 text-tt-blue">Epizòd</h2>
-            <div className="grid gap-6">
+            <div className="mb-12">
               {speaker.episodes.map(episode => (
                 <Episode key={episode.id} episode={episode} />
               ))}
