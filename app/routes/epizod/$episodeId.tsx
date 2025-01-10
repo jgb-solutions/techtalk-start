@@ -56,7 +56,8 @@ function EpisodePage() {
                 {episode.speakers.map((speaker) => (
                   <Link
                     key={speaker.id}
-                    to={`/panelis/${speaker.id}`}
+                    params={{ speakerId: speaker.id }}
+                    to={`/panelis/$speakerId`}
                     className="text-center mr-4"
                     title={speaker.name}
                   >
