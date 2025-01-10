@@ -5,6 +5,7 @@ import Episode from '~/components/Episode'
 import * as api from '~/services/requests.server'
 import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube, FaGlobe } from 'react-icons/fa'
 import { FaXTwitter } from "react-icons/fa6"
+import { clx } from '~/utils/helpers'
 
 const getSpeaker = createServerFn({
   method: 'GET',
@@ -118,8 +119,12 @@ function RouteComponent() {
           <div>
             <h2 className="text-3xl font-bold mb-6 text-tt-blue">Epizòd</h2>
             <div className="mb-12">
-              {speaker.episodes.map(episode => (
-                <Episode key={episode.id} episode={episode} />
+              {speaker.episodes.map((episode, index) => (
+                <Episode key={episode.id} episode={episode}
+                  className={clx({
+                    'mb-4': index !== speaker.episodes.length - 1,
+                  })}
+                />
               ))}
             </div>
           </div>

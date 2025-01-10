@@ -42,7 +42,7 @@ export async function fetchEpisodes() {
 
   return response.map(({ image, ...episode }) => {
     const episodeImageUrl = getModelUrl({ model: episode, field: image })
-    const episodeCdnImageUrl = getPhotonUrl({ src: episodeImageUrl, quality: 100, width: 500 })
+    const episodeCdnImageUrl = getPhotonUrl({ src: episodeImageUrl, quality: 100, width: 720 })
 
     return {
       ...episode,
@@ -69,7 +69,7 @@ export async function fetchEpisode(episodeId: string) {
   const { image, expand, ...episode } = response
 
   const episodeImageUrl = getModelUrl({ model: episode, field: image })
-  const episodeCdnImageUrl = getPhotonUrl({ src: episodeImageUrl, quality: 100, width: 500 })
+  const episodeCdnImageUrl = getPhotonUrl({ src: episodeImageUrl, quality: 100, width: 720 })
 
   return {
     ...episode,
@@ -136,7 +136,7 @@ export async function fetchSpeaker(speakerId: string) {
   const { image, expand, ...speaker } = response
 
   const speakerImageUrl = getModelUrl({ model: speaker, field: image })
-  const speakerCdnImageUrl = getPhotonUrl({ src: speakerImageUrl, quality: 100, width: 500 })
+  const speakerCdnImageUrl = getPhotonUrl({ src: speakerImageUrl, quality: 100, width: 720 })
 
   return {
     ...speaker,
@@ -144,7 +144,7 @@ export async function fetchSpeaker(speakerId: string) {
     cdnImageUrl: speakerCdnImageUrl,
     episodes: expand.episodes_via_speakers.sort((a, b) => new Date(a.date) < new Date(b.date) ? 1 : -1).map(({ image, ...episode }) => {
       const episodeImageUrl = getModelUrl({ model: episode, field: image })
-      const episodeCdnImageUrl = getPhotonUrl({ src: episodeImageUrl, quality: 100, width: 250 })
+      const episodeCdnImageUrl = getPhotonUrl({ src: episodeImageUrl, quality: 100, width: 720 })
       return {
         ...episode,
         imageUrl: episodeImageUrl,
