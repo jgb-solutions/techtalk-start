@@ -3,7 +3,7 @@ import {
   ScrollRestoration,
   createRootRoute,
 } from '@tanstack/react-router'
-import "~/tailwind.css"
+import appCss from "~/tailwind.css?url"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
 import { Meta, Scripts } from '@tanstack/start'
@@ -23,6 +23,9 @@ export const Route = createRootRoute({
         title: 'TanStack Start Starter',
       },
     ],
+    links: [
+      { rel: 'stylesheet', href: appCss },
+    ]
   }),
   component: RootComponent,
 })
