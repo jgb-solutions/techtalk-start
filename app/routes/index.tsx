@@ -21,7 +21,9 @@ const getEpisodes = createServerFn().handler(async () => {
 export const Route = createFileRoute('/')({
   component: Home,
   loader: async () => {
-    const episodes = await getEpisodes()
+    // const episodes = await getEpisodes()
+    const episodes = await api.fetchEpisodes()
+
     return { episodes }
   },
 })

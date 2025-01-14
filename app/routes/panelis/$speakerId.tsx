@@ -19,7 +19,9 @@ const getSpeaker = createServerFn({
 export const Route = createFileRoute('/panelis/$speakerId')({
   component: RouteComponent,
   loader: async ({ params: { speakerId } }) => {
-    const speaker = await getSpeaker({ data: speakerId })
+    // const speaker = await getSpeaker({ data: speakerId })
+    const speaker = await api.fetchSpeaker(speakerId)
+
 
     return { speaker }
   },

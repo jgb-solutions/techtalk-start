@@ -14,6 +14,7 @@
     "@tanstack/react-router": "^1.95.1",
     "@tanstack/start": "^1.95.1",
     "classnames": "^2.5.1",
+    "client-only": "^0.0.1",
     "dayjs": "^1.11.13",
     "isbot": "^4.1.0",
     "pocketbase": "^0.24.0",
@@ -24,6 +25,7 @@
     "zod": "^3.24.1"
   },
   "devDependencies": {
+    "@flydotio/dockerfile": "^0.7.0",
     "@tailwindcss/typography": "^0.5.15",
     "@tanstack/eslint-plugin-router": "^1.92.7",
     "@tanstack/router-devtools": "^1.95.2",
