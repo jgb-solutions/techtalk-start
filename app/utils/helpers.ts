@@ -18,3 +18,7 @@ export const getYouTubeIdFromUrl = (url: string) => {
 export const itHas = (val: unknown): boolean => !!val
 
 export const getSpeakerName = (speaker: IEpisode['speakers'][0]) => speaker.nickname || speaker.name.split(' ')
+
+export const removeHtmlTags = (htmlString: string) => {
+  return htmlString.replace(/<[^>]*>/g, '')
+}

@@ -7,6 +7,7 @@ import {
   getSpeakerName,
   getYouTubeIdFromUrl,
   itHas,
+  removeHtmlTags,
 } from '~/utils/helpers'
 import { createServerFn } from '@tanstack/start'
 import { seo } from '~/utils/seo'
@@ -36,7 +37,7 @@ export const Route = createFileRoute('/epizod/$episodeId')({
     return {
       meta: [...seo({
         title: episode.title,
-        description: episode.description || episode.content,
+        description: episode.description || removeHtmlTags(episode.content),
         image: episode.cdnImageUrl,
       }),
       ]
