@@ -9,6 +9,8 @@ import Footer from "../components/Footer"
 import { Meta, Scripts } from '@tanstack/start'
 import type { ReactNode } from 'react'
 import React from 'react'
+import { APP_NAME } from '~/utils/constants'
+import { seo } from '~/utils/seo'
 
 export const Route = createRootRoute({
   head: () => ({
@@ -20,9 +22,10 @@ export const Route = createRootRoute({
         name: 'viewport',
         content: 'width=device-width, initial-scale=1',
       },
-      {
-        title: 'TanStack Start Starter',
-      },
+      ...seo({
+        title: APP_NAME,
+        description: APP_NAME
+      }),
     ],
     links: [
       { rel: 'stylesheet', href: appCss },

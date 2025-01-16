@@ -9,6 +9,7 @@ import {
   itHas,
 } from '~/utils/helpers'
 import { createServerFn } from '@tanstack/start'
+import { seo } from '~/utils/seo'
 
 const getEpisode = createServerFn({
   method: 'GET',
@@ -26,6 +27,20 @@ export const Route = createFileRoute('/epizod/$episodeId')({
 
 
     return { episode }
+  },
+  head: ({ loaderData }) => {
+    if (!loaderData) return {}
+
+    const { episode } = loaderData
+
+    return {
+      meta: [...seo({
+        title: episode.title,
+        description: episode.description || episode.content,
+        image: episode.cdnImageUrl,
+      }),
+      ]
+    }
   },
 })
 
