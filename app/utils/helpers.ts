@@ -1,5 +1,5 @@
 import clx from 'classnames'
-import { IEpisode } from '~/types/interfaces'
+import { ISpeaker } from '~/types/interfaces'
 
 
 export { clx }
@@ -17,7 +17,7 @@ export const getYouTubeIdFromUrl = (url: string) => {
 
 export const itHas = (val: unknown): boolean => !!val
 
-export const getSpeakerName = (speaker: IEpisode['speakers'][0]) => speaker.nickname || speaker.name.split(' ')
+export const getSpeakerNickname = (speaker: ISpeaker) => speaker.nickname || speaker.name.split(' ')[0]
 
 export const removeHtmlTags = (htmlString: string) => {
   return htmlString.replace(/<[^>]*>/g, '')

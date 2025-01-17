@@ -1,27 +1,14 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { createServerFn } from '@tanstack/start'
 import Container from '~/components/Container'
 import Episode from '~/components/Episode'
 import Title from '~/components/Title'
-import * as api from '~/services/requests.server'
+import * as api from '~/services/requests'
 import { clx } from '~/utils/helpers'
 
-const getEpisodes = createServerFn().handler(async () => {
-  const episodes = await api.fetchEpisodes()
-
-  return episodes
-})
-
-// const updateCount = createServerFn({ method: 'POST' })
-//   .validator((d: number) => d)
-//   .handler(async ({ data }) => {
-//     return { data: data + 1 }
-//   })
 
 export const Route = createFileRoute('/')({
   component: Home,
   loader: async () => {
-    // const episodes = await getEpisodes()
     const episodes = await api.fetchEpisodes()
 
     return { episodes }

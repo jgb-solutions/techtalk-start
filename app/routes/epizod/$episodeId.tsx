@@ -1,31 +1,38 @@
-import { createFileRoute, Link } from '@tanstack/react-router'
+import { createFileRoute, Link, useRouter, useRouterState } from '@tanstack/react-router'
+import {
+  EmailShareButton,
+  TwitterShareButton,
+  TelegramShareButton,
+  FacebookShareButton,
+  WhatsappShareButton,
+  FacebookIcon,
+  TelegramIcon,
+  EmailIcon,
+  WhatsappIcon,
+  XIcon,
+  LinkedinIcon,
+  LinkedinShareButton
+} from 'react-share'
+
 import Container from '~/components/Container'
 import Title from '~/components/Title'
-import * as api from '~/services/requests.server'
+import * as api from '~/services/requests'
+import colors from '~/utils/colors'
+import { APP_NAME, SITE_URL, TWITTER_HANDLE } from '~/utils/constants'
 import {
   formatTitle,
-  getSpeakerName,
+  getSpeakerNickname,
   getYouTubeIdFromUrl,
   itHas,
   removeHtmlTags,
 } from '~/utils/helpers'
-import { createServerFn } from '@tanstack/start'
 import { seo } from '~/utils/seo'
 
-const getEpisode = createServerFn({
-  method: 'GET',
-}).validator((data: string) => data).handler(async ctx => {
-  const episode = await api.fetchEpisode(ctx.data)
-
-  return episode
-})
 
 export const Route = createFileRoute('/epizod/$episodeId')({
   component: EpisodePage,
   loader: async ({ params: { episodeId } }) => {
-    // const episode = await getEpisode({ data: episodeId })
     const episode = await api.fetchEpisode(episodeId)
-
 
     return { episode }
   },
@@ -46,8 +53,12 @@ export const Route = createFileRoute('/epizod/$episodeId')({
 })
 
 function EpisodePage() {
+  const routerState = useRouterState()
   const { episode } = Route.useLoaderData()
   const youtubeId = getYouTubeIdFromUrl(episode.youtube)
+  const url = `${SITE_URL}${routerState.location.href}`
+  const title = `Listen to ${episode.title} by ${APP_NAME}`
+  const hashtags = `${APP_NAME} techtalk episode share tech talk podcast`
 
   return (
     <Container>
@@ -69,14 +80,13 @@ function EpisodePage() {
         <div className="p-4">
           {itHas(episode.speakers.length) && (
             <div className="flex flex-row items-center mb-4">
-              {/* <h4 className="text-lg mr-3">Panelis:</h4> */}
-              <div className="flex flex-row items-center">
+              <div className="flex flex-row items-center flex-wrap">
                 {episode.speakers.map((speaker) => (
                   <Link
                     key={speaker.id}
                     params={{ speakerId: speaker.id }}
                     to={`/panelis/$speakerId`}
-                    className="text-center mr-4"
+                    className="text-center mr-2 sm:mr-4 mb-2 sm:mb-4"
                     title={speaker.name}
                   >
                     <img
@@ -84,22 +94,62 @@ function EpisodePage() {
                       alt={speaker.name}
                       className="max-w-full w-12 h-12 rounded-full"
                     />
-                    <span className="text-sm">{getSpeakerName(speaker)}</span>
+                    <span className="text-sm">{getSpeakerNickname(speaker)}</span>
                   </Link>
                 ))}
               </div>
             </div>
           )}
 
-          {itHas(episode.description) && (
-            <p className="text-lg">{episode.description}</p>
-          )}
           {itHas(episode.content) && (
             <div
-              className="prose"
+              className="prose mb-8"
               dangerouslySetInnerHTML={{ __html: episode.content }}
             />
           )}
+
+          <div className="flex items-center">
+            <FacebookShareButton
+              url={url}
+              title={title}
+              hashtag={hashtags.split(' ').join(' #')}
+            >
+              <FacebookIcon
+                className={`w-10 h-10 text-[${colors.facebook} rounded-xl mr-2 `}
+              />
+            </FacebookShareButton>
+
+            <TwitterShareButton
+              url={url}
+              title={title}
+              via={TWITTER_HANDLE}
+              hashtags={hashtags.split(' ')}
+            >
+              <XIcon
+                className={`w-10 h-10 text-[${colors.twitter}] rounded-xl mr-2`}
+              />
+            </TwitterShareButton>
+            <LinkedinShareButton url={url} title={title}>
+              <LinkedinIcon
+                className={`w-10 h-10 text-[${colors.linkedin}] rounded-xl mr-2`}
+              />
+            </LinkedinShareButton>
+            <WhatsappShareButton url={url} title={title}>
+              <WhatsappIcon
+                className={`w-10 h-10 text-[${colors.whatsapp}] rounded-xl mr-2`}
+              />
+            </WhatsappShareButton>
+            <TelegramShareButton url={url} title={title}>
+              <TelegramIcon
+                className={`w-10 h-10 text-[${colors.telegram}] rounded-xl mr-2`}
+              />
+            </TelegramShareButton>
+            <EmailShareButton url={url} subject={title} body={title}>
+              <EmailIcon
+                className={`w-10 h-10 rounded-xl`}
+              />
+            </EmailShareButton>
+          </div>
         </div>
       </article>
     </Container>

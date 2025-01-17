@@ -1,29 +1,34 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { createServerFn } from '@tanstack/start'
 import Container from '~/components/Container'
 import Episode from '~/components/Episode'
-import * as api from '~/services/requests.server'
+import * as api from '~/services/requests'
 import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube, FaGlobe } from 'react-icons/fa'
 import { FaXTwitter } from "react-icons/fa6"
-import { clx } from '~/utils/helpers'
+import { clx, getSpeakerNickname } from '~/utils/helpers'
+import { seo } from '~/utils/seo'
 
-const getSpeaker = createServerFn({
-  method: 'GET',
-}).validator((data: string) => data).handler(async ctx => {
-  const episode = await api.fetchSpeaker(ctx.data)
-
-  return episode
-})
 
 
 export const Route = createFileRoute('/panelis/$speakerId')({
   component: RouteComponent,
   loader: async ({ params: { speakerId } }) => {
-    // const speaker = await getSpeaker({ data: speakerId })
     const speaker = await api.fetchSpeaker(speakerId)
 
-
     return { speaker }
+  },
+  head: ({ loaderData }) => {
+    if (!loaderData) return {}
+
+    const { speaker } = loaderData
+
+    return {
+      meta: [...seo({
+        title: `${speaker.name} (${getSpeakerNickname(speaker)})`,
+        description: speaker.bio,
+        image: speaker.cdnImageUrl,
+      }),
+      ]
+    }
   },
 })
 
@@ -40,13 +45,13 @@ function RouteComponent() {
               alt={speaker.name}
               className="w-48 h-48 rounded-full shadow-lg border-4 border-white"
             />
-            <div>
+            <div className="text-center sm:text-left">
               <h1 className="text-2xl sm:text-4xl font-bold mb-4">{speaker.name}</h1>
               {speaker.bio && (
                 <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: speaker.bio }} />
               )}
 
-              <div className="flex gap-4 mt-4">
+              <div className="flex gap-4 mt-4 justify-center sm:justify-start">
                 {speaker.youtube && (
                   <a
                     href={speaker.youtube}
