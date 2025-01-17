@@ -4,7 +4,7 @@ import Episode from '~/components/Episode'
 import * as api from '~/services/requests'
 import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube, FaGlobe } from 'react-icons/fa'
 import { FaXTwitter } from "react-icons/fa6"
-import { clx, getSpeakerNickname } from '~/utils/helpers'
+import { clx, removeHtmlTags, getSpeakerNickname } from '~/utils/helpers'
 import { seo } from '~/utils/seo'
 
 
@@ -24,7 +24,7 @@ export const Route = createFileRoute('/panelis/$speakerId')({
     return {
       meta: [...seo({
         title: `${speaker.name} (${getSpeakerNickname(speaker)})`,
-        description: speaker.bio,
+        description: removeHtmlTags(speaker.bio),
         image: speaker.cdnImageUrl,
       }),
       ]

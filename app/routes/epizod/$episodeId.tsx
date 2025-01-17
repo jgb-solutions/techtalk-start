@@ -1,4 +1,4 @@
-import { createFileRoute, Link, useRouterState } from '@tanstack/react-router'
+import { createFileRoute, Link, useLocation } from '@tanstack/react-router'
 import { FaCalendarAlt, } from 'react-icons/fa'
 import {
   EmailShareButton,
@@ -56,10 +56,10 @@ export const Route = createFileRoute('/epizod/$episodeId')({
 })
 
 function EpisodePage() {
-  const routerState = useRouterState()
+  const location = useLocation()
   const { episode } = Route.useLoaderData()
   const youtubeId = getYouTubeIdFromUrl(episode.youtube)
-  const url = `${SITE_URL}${routerState.location.href}`
+  const url = `${SITE_URL}${location.href}`
   const title = `Listen to ${episode.title} by ${APP_NAME}`
   const hashtags = `${APP_NAME} techtalk episode share tech talk podcast`
 

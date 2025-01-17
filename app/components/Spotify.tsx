@@ -16,7 +16,6 @@ export const Spotify = ({
   wide = false,
   width = wide ? "100%" : 300,
   height = wide ? 80 : 380,
-  frameBorder = 0,
   allow = "encrypted-media",
   ...props
 }: SpotifyProps) => {
@@ -31,7 +30,6 @@ export const Spotify = ({
       src={`https://open.spotify.com/embed${url.pathname}`}
       width={width}
       height={height}
-      frameBorder={frameBorder}
       allow={allow}
       style={{
         borderRadius: 8,
