@@ -46,7 +46,7 @@ function RouteComponent() {
               className="w-48 h-48 rounded-full shadow-lg border-4 border-white"
             />
             <div className="text-center sm:text-left">
-              <h1 className="text-2xl sm:text-4xl font-bold mb-4">{speaker.name}</h1>
+              <h1 className="text-2xl sm:text-4xl font-bold mb-4"><span className="text-lg font-medium">{getSpeakerNickname(speaker)}</span> <br />{speaker.name}</h1>
               {speaker.bio && (
                 <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: speaker.bio }} />
               )}
