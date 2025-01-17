@@ -1,3 +1,4 @@
+import dayjs from 'dayjs'
 import clx from 'classnames'
 import { ISpeaker } from '~/types/interfaces'
 
@@ -22,3 +23,5 @@ export const getSpeakerNickname = (speaker: ISpeaker) => speaker.nickname || spe
 export const removeHtmlTags = (htmlString: string) => {
   return htmlString.replace(/<[^>]*>/g, '')
 }
+
+export const formatDate = (date: string) => dayjs(date).format('DD/MM/YYYY')

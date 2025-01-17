@@ -1,4 +1,5 @@
-import { createFileRoute, Link, useRouter, useRouterState } from '@tanstack/react-router'
+import { createFileRoute, Link, useRouterState } from '@tanstack/react-router'
+import { FaCalendarAlt, } from 'react-icons/fa'
 import {
   EmailShareButton,
   TwitterShareButton,
@@ -15,11 +16,13 @@ import {
 } from 'react-share'
 
 import Container from '~/components/Container'
+import { Spotify } from '~/components/Spotify'
 import Title from '~/components/Title'
 import * as api from '~/services/requests'
 import colors from '~/utils/colors'
 import { APP_NAME, SITE_URL, TWITTER_HANDLE } from '~/utils/constants'
 import {
+  formatDate,
   formatTitle,
   getSpeakerNickname,
   getYouTubeIdFromUrl,
@@ -77,7 +80,21 @@ function EpisodePage() {
             allowFullScreen
           ></iframe>
         )}
+
+        {itHas(episode.spotify) && (
+          <div className="mb-4 p-4">
+            <Spotify wide link={episode.spotify} />
+          </div>
+        )}
+
         <div className="p-4">
+          <div className="flex flex-row items-center mb-8">
+            <div className="flex flex-row items-center">
+              <FaCalendarAlt className="mr-1" />
+              <span className="text-sm">{formatDate(episode.date)}</span>
+            </div>
+          </div>
+
           {itHas(episode.speakers.length) && (
             <div className="flex flex-row items-center mb-4">
               <div className="flex flex-row items-center flex-wrap">
