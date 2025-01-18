@@ -4,6 +4,7 @@ import Speaker from '~/components/Speaker'
 import Title from '~/components/Title'
 import * as api from '~/services/requests'
 import { clx } from '~/utils/helpers'
+import { seo } from '~/utils/seo'
 
 export const Route = createFileRoute('/panelis/')({
   component: Home,
@@ -11,6 +12,16 @@ export const Route = createFileRoute('/panelis/')({
     const speakers = await api.fetchSpeakers()
 
     return { speakers }
+  },
+  head: () => {
+
+    return {
+      meta: [...seo({
+        title: "Tech Talk: Panelis",
+        description: `Paj tout panelis nan Tech Talk`,
+      }),
+      ]
+    }
   },
 })
 
