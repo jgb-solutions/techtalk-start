@@ -1,8 +1,10 @@
+import { SITE_URL } from "./constants"
+
 export const seo = ({
   title,
   description,
   keywords,
-  image,
+  image = `${SITE_URL}/assets/images/grunged-mockup.jpg`,
 }: {
   title: string
   description?: string
