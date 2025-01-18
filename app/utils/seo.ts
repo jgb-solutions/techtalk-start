@@ -1,10 +1,11 @@
 import { SITE_URL } from "./constants"
+import getPhotonUrl from "./photon"
 
 export const seo = ({
   title,
   description,
   keywords,
-  image = `${SITE_URL}/assets/images/grunged-mockup.jpg`,
+  image = getPhotonUrl({ src: `${SITE_URL}/assets/images/grunged-mockup.jpg`, width: 720 }),
 }: {
   title: string
   description?: string
