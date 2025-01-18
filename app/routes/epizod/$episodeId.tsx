@@ -20,7 +20,7 @@ import { Spotify } from '~/components/Spotify'
 import Title from '~/components/Title'
 import * as api from '~/services/requests'
 import colors from '~/utils/colors'
-import { APP_NAME, SITE_URL, TWITTER_HANDLE } from '~/utils/constants'
+import { SITE_NAME, SITE_URL, X_HANDLE } from '~/utils/constants'
 import {
   formatDate,
   formatTitle,
@@ -60,8 +60,8 @@ function EpisodePage() {
   const { episode } = Route.useLoaderData()
   const youtubeId = getYouTubeIdFromUrl(episode.youtube)
   const url = `${SITE_URL}${location.href}`
-  const title = `Listen to ${episode.title} by ${APP_NAME}`
-  const hashtags = `${APP_NAME} techtalk episode share tech talk podcast`
+  const title = `Listen to ${episode.title} by ${SITE_NAME}`
+  const hashtags = `${SITE_NAME} techtalk episode share tech talk podcast`
 
   return (
     <Container>
@@ -139,7 +139,7 @@ function EpisodePage() {
             <TwitterShareButton
               url={url}
               title={title}
-              via={TWITTER_HANDLE}
+              via={X_HANDLE}
               hashtags={hashtags.split(' ')}
             >
               <XIcon
