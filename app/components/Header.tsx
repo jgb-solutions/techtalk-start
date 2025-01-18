@@ -10,7 +10,7 @@ export default function Header() {
           <img className="max-w-full w-24" src="/assets/images/techtalk-logo.svg" alt={SITE_NAME} />
         </Link>
         <nav className="flex items-center justify-end flex-1">
-          {/* <Link className="btn btn-info shadow-lg" to="/epizod">Epizòd</Link> */}
+          <Link className="btn btn-info shadow-lg" to="/">Epizòd</Link>
           <Link className="btn btn-info shadow-lg ml-2" to="/panelis">Panelis</Link>
           {/* <Link className="btn btn-info shadow-lg ml-2" to="/ekip">Ekip</Link> */}
           <Link className="btn btn-info shadow-lg ml-2" to="/kontak">Kontak</Link>

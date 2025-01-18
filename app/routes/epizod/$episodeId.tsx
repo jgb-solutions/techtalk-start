@@ -1,5 +1,5 @@
 import { createFileRoute, Link, useLocation } from '@tanstack/react-router'
-import { FaCalendarAlt, } from 'react-icons/fa'
+import { FaCalendarAlt } from 'react-icons/fa'
 import {
   EmailShareButton,
   TwitterShareButton,
