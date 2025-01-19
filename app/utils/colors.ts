@@ -1,6 +1,7 @@
 const colors = {
   facebook: '#1877f2',
-  twitter: '#1da1f2',
+  xBlack: '#000',
+  xWhite: '#fff',
   youtube: '#ff0000',
   instagram: '#c32aa3',
   whatsapp: '#25d366',

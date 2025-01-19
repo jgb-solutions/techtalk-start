@@ -1,13 +1,15 @@
 import { SITE_YOUTUBE_URL, SITE_INSTAGRAM_URL, SITE_FACEBOOK_URL, SITE_X_URL, SITE_LINKEDIN_URL } from "~/utils/constants"
 import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube } from "react-icons/fa"
 import { FaXTwitter } from "react-icons/fa6"
+import colors from "~/utils/colors"
 
 export default function Socials() {
   return (
     <div className="flex gap-4 mb-4">
       <a
         href={SITE_YOUTUBE_URL}
-        className="text-black hover:text-black/80 transition"
+        className="hover:opacity-80 transition"
+        style={{ color: colors.youtube }}
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -17,6 +19,7 @@ export default function Socials() {
       <a
         href={SITE_INSTAGRAM_URL}
         className="hover:opacity-80 transition"
+        style={{ color: colors.instagram }}
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -26,6 +29,7 @@ export default function Socials() {
       <a
         href={SITE_FACEBOOK_URL}
         className="hover:opacity-80 transition"
+        style={{ color: colors.facebook }}
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -35,6 +39,7 @@ export default function Socials() {
       <a
         href={SITE_X_URL}
         className="hover:opacity-80 transition"
+        style={{ color: colors.xWhite }}
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -44,6 +49,7 @@ export default function Socials() {
       <a
         href={SITE_LINKEDIN_URL}
         className="hover:opacity-80 transition"
+        style={{ color: colors.linkedin }}
         target="_blank"
         rel="noopener noreferrer"
       >
