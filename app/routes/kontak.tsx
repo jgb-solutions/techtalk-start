@@ -1,22 +1,20 @@
 import { createFileRoute } from '@tanstack/react-router'
 import Container from '~/components/Container'
-import Episode from '~/components/Episode'
 import Socials from '~/components/Socials'
 import Title from '~/components/Title'
-import * as api from '~/services/requests'
-import { clx } from '~/utils/helpers'
+import { seo } from '~/utils/seo'
 
 export const Route = createFileRoute('/kontak')({
   component: Home,
-  loader: async () => {
-    const episodes = await api.fetchEpisodes()
-
-    return { episodes }
-  },
+  head: () => ({
+    meta: seo({
+      title: 'Tech Talk: Kontak',
+      description: 'Kontakte nou nan Tech Talk, yon pòdkas ki pale sou teknoloji an kreyòl.',
+    }),
+  }),
 })
 
 function Home() {
-  const { episodes } = Route.useLoaderData()
 
   return (
     <Container>
