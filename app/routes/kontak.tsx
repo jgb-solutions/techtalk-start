@@ -5,7 +5,7 @@ import Title from '~/components/Title'
 import { seo } from '~/utils/seo'
 
 export const Route = createFileRoute('/kontak')({
-  component: Home,
+  component: Kontak,
   head: () => ({
     meta: seo({
       title: 'Tech Talk: Kontak',
@@ -14,8 +14,7 @@ export const Route = createFileRoute('/kontak')({
   }),
 })
 
-function Home() {
-
+function Kontak() {
   return (
     <Container>
       <Title className="text-tt-blue">

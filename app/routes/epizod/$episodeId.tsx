@@ -143,7 +143,7 @@ function EpisodePage() {
               hashtags={hashtags.split(' ')}
             >
               <XIcon
-                className={`w-10 h-10 text-[${colors.twitter}] rounded-xl mr-2`}
+                className={`w-10 h-10 text-[${colors.xBlack}] rounded-xl mr-2`}
               />
             </TwitterShareButton>
             <LinkedinShareButton url={url} title={title}>
