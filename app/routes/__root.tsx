@@ -55,6 +55,16 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
         })),
       )
 
+  const VercelAnalytics =
+    process.env.NODE_ENV === 'production'
+      ? () => null // Render nothing in production
+      : React.lazy(() =>
+        // Lazy load in development
+        import('@vercel/analytics/react').then((res) => ({
+          default: res.Analytics,
+        })),
+      )
+
   return (
     <html lang="en" className="h-full" data-theme="cupcake">
       <head>
@@ -77,6 +87,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
 
         <ScrollRestoration />
         <Scripts />
+        <VercelAnalytics />
         <TanStackRouterDevtools />
       </body>
     </html>
