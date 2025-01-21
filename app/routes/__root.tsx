@@ -14,6 +14,7 @@ import { Analytics as VercelAnalytics } from "@vercel/analytics/react"
 import { SITE_NAME } from '~/utils/constants'
 import { seo } from '~/utils/seo'
 import RunInProduction from '~/components/RunInProduction'
+import { CloudflareAnalytics } from '~/components/CloudflareAnalytics'
 
 export const Route = createRootRoute({
   head: () => ({
@@ -83,6 +84,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
         <Scripts />
         <RunInProduction>
           <VercelAnalytics />
+          <CloudflareAnalytics />
         </RunInProduction>
         <TanStackRouterDevtools />
       </body>
