@@ -11,6 +11,7 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as PrivacyImport } from './routes/privacy'
 import { Route as KontakImport } from './routes/kontak'
 import { Route as EkipImport } from './routes/ekip'
 import { Route as IndexImport } from './routes/index'
@@ -19,6 +20,12 @@ import { Route as PanelisSpeakerIdImport } from './routes/panelis/$speakerId'
 import { Route as EpizodEpisodeIdImport } from './routes/epizod/$episodeId'
 
 // Create/Update Routes
+
+const PrivacyRoute = PrivacyImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const KontakRoute = KontakImport.update({
   id: '/kontak',
@@ -81,6 +88,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof KontakImport
       parentRoute: typeof rootRoute
     }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyImport
+      parentRoute: typeof rootRoute
+    }
     '/epizod/$episodeId': {
       id: '/epizod/$episodeId'
       path: '/epizod/$episodeId'
@@ -111,6 +125,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/ekip': typeof EkipRoute
   '/kontak': typeof KontakRoute
+  '/privacy': typeof PrivacyRoute
   '/epizod/$episodeId': typeof EpizodEpisodeIdRoute
   '/panelis/$speakerId': typeof PanelisSpeakerIdRoute
   '/panelis': typeof PanelisIndexRoute
@@ -120,6 +135,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/ekip': typeof EkipRoute
   '/kontak': typeof KontakRoute
+  '/privacy': typeof PrivacyRoute
   '/epizod/$episodeId': typeof EpizodEpisodeIdRoute
   '/panelis/$speakerId': typeof PanelisSpeakerIdRoute
   '/panelis': typeof PanelisIndexRoute
@@ -130,6 +146,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/ekip': typeof EkipRoute
   '/kontak': typeof KontakRoute
+  '/privacy': typeof PrivacyRoute
   '/epizod/$episodeId': typeof EpizodEpisodeIdRoute
   '/panelis/$speakerId': typeof PanelisSpeakerIdRoute
   '/panelis/': typeof PanelisIndexRoute
@@ -141,6 +158,7 @@ export interface FileRouteTypes {
     | '/'
     | '/ekip'
     | '/kontak'
+    | '/privacy'
     | '/epizod/$episodeId'
     | '/panelis/$speakerId'
     | '/panelis'
@@ -149,6 +167,7 @@ export interface FileRouteTypes {
     | '/'
     | '/ekip'
     | '/kontak'
+    | '/privacy'
     | '/epizod/$episodeId'
     | '/panelis/$speakerId'
     | '/panelis'
@@ -157,6 +176,7 @@ export interface FileRouteTypes {
     | '/'
     | '/ekip'
     | '/kontak'
+    | '/privacy'
     | '/epizod/$episodeId'
     | '/panelis/$speakerId'
     | '/panelis/'
@@ -167,6 +187,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   EkipRoute: typeof EkipRoute
   KontakRoute: typeof KontakRoute
+  PrivacyRoute: typeof PrivacyRoute
   EpizodEpisodeIdRoute: typeof EpizodEpisodeIdRoute
   PanelisSpeakerIdRoute: typeof PanelisSpeakerIdRoute
   PanelisIndexRoute: typeof PanelisIndexRoute
@@ -176,6 +197,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   EkipRoute: EkipRoute,
   KontakRoute: KontakRoute,
+  PrivacyRoute: PrivacyRoute,
   EpizodEpisodeIdRoute: EpizodEpisodeIdRoute,
   PanelisSpeakerIdRoute: PanelisSpeakerIdRoute,
   PanelisIndexRoute: PanelisIndexRoute,
@@ -194,6 +216,7 @@ export const routeTree = rootRoute
         "/",
         "/ekip",
         "/kontak",
+        "/privacy",
         "/epizod/$episodeId",
         "/panelis/$speakerId",
         "/panelis/"
@@ -207,6 +230,9 @@ export const routeTree = rootRoute
     },
     "/kontak": {
       "filePath": "kontak.tsx"
+    },
+    "/privacy": {
+      "filePath": "privacy.tsx"
     },
     "/epizod/$episodeId": {
       "filePath": "epizod/$episodeId.tsx"
