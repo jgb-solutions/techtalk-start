@@ -1,4 +1,4 @@
-import { pb } from '~/services/pocketbase.server'
+import { pb } from '~/services/pocketbase'
 
 import type { RecordModel } from 'pocketbase'
 

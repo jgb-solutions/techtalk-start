@@ -1,3 +1,4 @@
+import React from 'react'
 import {
   Outlet,
   ScrollRestoration,
@@ -8,7 +9,6 @@ import Header from "../components/Header"
 import Footer from "../components/Footer"
 import { Meta, Scripts } from '@tanstack/start'
 import type { ReactNode } from 'react'
-import React from 'react'
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react"
 
 import { SITE_NAME } from '~/utils/constants'
@@ -75,6 +75,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
       // style={{ backgroundImage: "url('/assets/images/Grunged-paper-Background-1.jpg')" }}
       >
         <Header />
+
         <main className="">
           {children}
         </main>
@@ -86,7 +87,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
           <VercelAnalytics />
           <CloudflareAnalytics />
         </RunInProduction>
-        <TanStackRouterDevtools />
+        {/* <TanStackRouterDevtools /> */}
       </body>
     </html>
   )

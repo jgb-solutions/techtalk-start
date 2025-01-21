@@ -1,7 +1,7 @@
 import { pickFields, getModelUrl } from "~/utils/helpers.server"
 
 import type * as PT from '../types/pocketbase-types'
-import { pb } from './pocketbase.server'
+import { pb } from './pocketbase'
 import getPhotonUrl from "~/utils/photon"
 
 export async function fetchSiteMap() {
