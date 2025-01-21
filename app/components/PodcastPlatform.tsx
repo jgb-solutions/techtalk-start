@@ -9,7 +9,7 @@ export default function Footer() {
     {
       name: "Spotify",
       url: "https://open.spotify.com/show/2Fyem0cWQ8bz3F1CRPnW5F",
-      icon: "/assets/images/podcasts/spotify.svg",
+      icon: "/assets/images/podcasts/spotify-icon.svg",
       color: colors.spotify
     },
     {
