@@ -14,8 +14,10 @@ import {
   LinkedinIcon,
   LinkedinShareButton
 } from 'react-share'
+import ClientOnly from '~/components/ClientOnly'
 
 import Container from '~/components/Container'
+import { FacebookComments } from '~/components/FacebookComments'
 import { Spotify } from '~/components/Spotify'
 import Title from '~/components/Title'
 import * as api from '~/services/requests'
@@ -169,6 +171,10 @@ function EpisodePage() {
           </div>
         </div>
       </article>
+
+      <ClientOnly>
+        <FacebookComments url={url} />
+      </ClientOnly>
     </Container>
   )
 }
