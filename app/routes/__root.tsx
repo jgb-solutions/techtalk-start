@@ -1,15 +1,16 @@
-import React from 'react'
 import {
   Outlet,
   ScrollRestoration,
   createRootRoute,
 } from '@tanstack/react-router'
+import { LoadingBarContainer } from "react-top-loading-bar"
+import { Meta, Scripts } from '@tanstack/start'
+import { Analytics as VercelAnalytics } from "@vercel/analytics/react"
+
 import appCss from "~/tailwind.css?url"
 import Header from "../components/Header"
 import Footer from "../components/Footer"
-import { Meta, Scripts } from '@tanstack/start'
 import type { ReactNode } from 'react'
-import { Analytics as VercelAnalytics } from "@vercel/analytics/react"
 
 import { SITE_NAME } from '~/utils/constants'
 import { seo } from '~/utils/seo'
@@ -47,19 +48,6 @@ function RootComponent() {
 }
 
 function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
-  const TanStackRouterDevtools =
-    process.env.NODE_ENV === 'production'
-      ? () => null // Render nothing in production
-      : React.lazy(() =>
-        // Lazy load in development
-        import('@tanstack/router-devtools').then((res) => ({
-          default: res.TanStackRouterDevtools,
-          // For Embedded Mode
-          // default: res.TanStackRouterDevtoolsPanel
-        })),
-      )
-
-
   return (
     <html lang="en" className="h-full" data-theme="cupcake">
       <head>
@@ -71,15 +59,16 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
         <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png" />
         <link rel="manifest" href="/assets/images/favicon/site.webmanifest" />
       </head>
-      <body className="font-sans antialiased min-h-full bg-center bg-cover bg-gray-300"
-      // style={{ backgroundImage: "url('/assets/images/Grunged-paper-Background-1.jpg')" }}
-      >
-        <Header />
+      <body className="font-sans antialiased min-h-full bg-center bg-cover bg-gray-300" >
+        <LoadingBarContainer>
+          <Header />
+        </LoadingBarContainer>
 
         <main className="">
           {children}
         </main>
         <Footer />
+
 
         <ScrollRestoration />
         <Scripts />
@@ -87,7 +76,6 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
           <VercelAnalytics />
           <CloudflareAnalytics />
         </RunInProduction>
-        {/* <TanStackRouterDevtools /> */}
       </body>
     </html>
   )

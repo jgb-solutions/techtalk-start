@@ -1,13 +1,16 @@
-import { Link } from '@tanstack/react-router'
+import { Link, useRouterState } from '@tanstack/react-router'
 import { useEffect, useRef, useState } from "react"
 
 import { SITE_NAME } from "~/utils/constants"
 import Container from "./Container"
 import { clx } from '~/utils/helpers'
+import { useLoadingBar } from 'react-top-loading-bar'
 
 export default function Header() {
+  const routerState = useRouterState()
   const headerRef = useRef<HTMLDivElement>(null)
   const [shouldBeSticky, setShouldBeSticky] = useState(false)
+  const { start, complete } = useLoadingBar({ color: "#ffa30a", height: 2 })
 
   function handleResize() {
     if (!headerRef.current) return
@@ -28,6 +31,14 @@ export default function Header() {
       window.removeEventListener("scroll", handleResize)
     }
   }, [])
+
+  useEffect(() => {
+    if (routerState.isLoading) {
+      start()
+    } else {
+      complete()
+    }
+  }, [routerState.isLoading])
 
   return (
     <header className={clx("bg-black rounded-br-none transition ease-in-out delay-150",

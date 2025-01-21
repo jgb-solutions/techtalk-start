@@ -1,7 +1,3 @@
-import { SITE_NAME } from "~/utils/constants"
-import Container from "./Container"
-import { Link } from "@tanstack/react-router"
-import Socials from "./Socials"
 import colors from "~/utils/colors"
 
 export default function Footer() {
