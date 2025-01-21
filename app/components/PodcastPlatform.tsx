@@ -38,7 +38,7 @@ export default function Footer() {
     }
   ]
   return (
-    <div className="flex sm:justify-around flex-wrap gap-2">
+    <div className="grid grid-cols-2 sm:flex sm:justify-around sm:flex-wrap gap-2">
       {platforms.map((platform) => (
         <a
           className="btn btn-sm border-none"
