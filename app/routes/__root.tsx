@@ -9,8 +9,11 @@ import Footer from "../components/Footer"
 import { Meta, Scripts } from '@tanstack/start'
 import type { ReactNode } from 'react'
 import React from 'react'
+import { Analytics as VercelAnalytics } from "@vercel/analytics/react"
+
 import { SITE_NAME } from '~/utils/constants'
 import { seo } from '~/utils/seo'
+import RunInProduction from '~/components/RunInProduction'
 
 export const Route = createRootRoute({
   head: () => ({
@@ -55,15 +58,6 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
         })),
       )
 
-  const VercelAnalytics =
-    process.env.NODE_ENV === 'production'
-      ? () => null // Render nothing in production
-      : React.lazy(() =>
-        // Lazy load in development
-        import('@vercel/analytics/react').then((res) => ({
-          default: res.Analytics,
-        })),
-      )
 
   return (
     <html lang="en" className="h-full" data-theme="cupcake">
@@ -87,7 +81,9 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
 
         <ScrollRestoration />
         <Scripts />
-        <VercelAnalytics />
+        <RunInProduction>
+          <VercelAnalytics />
+        </RunInProduction>
         <TanStackRouterDevtools />
       </body>
     </html>
