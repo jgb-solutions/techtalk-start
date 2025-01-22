@@ -4,31 +4,31 @@ export default function Footer() {
   const platforms = [
     {
       name: "Spotify",
-      url: "https://open.spotify.com/show/2Fyem0cWQ8bz3F1CRPnW5F",
+      url: "https://bit.ly/techtalk-spotify",
       icon: "/assets/images/podcasts/spotify-icon.svg",
       color: colors.spotify
     },
     {
       name: "Amazon Music",
-      url: "https://music.amazon.com/podcasts/75410f3f-0086-4271-97f1-1c1349c6a01b/tech-talk",
+      url: "https://bit.ly/techtalk-amazon",
       icon: "/assets/images/podcasts/amazon-music.png",
       color: colors.amazonMusic
     },
     {
       name: "Apple Podcasts",
-      url: "https://podcasts.apple.com/us/podcast/tech-talk/id1780957821",
+      url: "https://bit.ly/techtalk-apple",
       icon: "/assets/images/podcasts/apple-podcasts.jpg",
       color: colors.applePodcasts
     },
     {
       name: "iHeartRadio",
-      url: "https://www.iheart.com/podcast/269-tech-talk-255476996/",
+      url: "https://bit.ly/techtalk-iheartradio",
       icon: "/assets/images/podcasts/iheart-radio.png",
       color: colors.rss
     },
     {
       name: "YouTube",
-      url: "https://youtu.be/_0WlK1zwhwk?si=So83IAoOcDqOnmCk",
+      url: "https://bit.ly/techtalk-youtube",
       icon: "/assets/images/podcasts/youtube.svg",
       color: colors.youtubeBg
     }
