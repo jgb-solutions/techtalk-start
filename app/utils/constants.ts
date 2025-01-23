@@ -7,3 +7,5 @@ export const SITE_INSTAGRAM_URL = `https://www.instagram.com/jgbgram/?hl=fr`
 export const SITE_FACEBOOK_URL = `https://www.facebook.com/jeangerarddev`
 export const SITE_X_URL = `https://x.com/jgb_solutions`
 export const SITE_LINKEDIN_URL = `https://www.linkedin.com/in/jgb-dev/`
+export const EPISODE_IMAGE_SIZE = 590
+export const EPISODE_IMAGE_QUALITY = 100

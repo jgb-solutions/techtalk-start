@@ -3,6 +3,7 @@ import { pickFields, getModelUrl } from "~/utils/helpers.server"
 import type * as PT from '../types/pocketbase-types'
 import { pb } from './pocketbase'
 import getPhotonUrl from "~/utils/photon"
+import { EPISODE_IMAGE_QUALITY, EPISODE_IMAGE_SIZE } from "~/utils/constants"
 
 export async function fetchSiteMap() {
   return Promise.all([
@@ -37,7 +38,11 @@ export async function fetchEpisodes() {
 
   return response.map(({ image, ...episode }) => {
     const episodeImageUrl = getModelUrl({ model: episode, field: image })
-    const episodeCdnImageUrl = getPhotonUrl({ src: episodeImageUrl, quality: 100, width: 720 })
+    const episodeCdnImageUrl = getPhotonUrl({
+      src: episodeImageUrl,
+      quality: EPISODE_IMAGE_QUALITY,
+      width: EPISODE_IMAGE_SIZE
+    })
 
     return {
       ...episode,
