@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 
 import Container from '~/components/Container'
-import Episode from '~/components/Episode'
+import EpisodeCard from '~/components/EpisodeCard'
 import Title from '~/components/Title'
 import * as api from '~/services/requests'
 import { clx } from '~/utils/helpers'
@@ -37,7 +37,7 @@ function Home() {
 
       <article className="mb-12">
         {episodes.map((episode, index) => (
-          <Episode
+          <EpisodeCard
             key={episode.id}
             episode={episode}
             className={clx({

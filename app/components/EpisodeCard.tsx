@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router"
 import { IEpisodeCard } from "~/types/interfaces"
 import { clx, formatTitle } from "~/utils/helpers"
 
-export default function Episode({
+export default function EpisodeCard({
   episode,
   className,
 }: {

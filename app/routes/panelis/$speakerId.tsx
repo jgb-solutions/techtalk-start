@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import Container from '~/components/Container'
-import Episode from '~/components/Episode'
+import EpisodeCard from '~/components/EpisodeCard'
 import * as api from '~/services/requests'
 import { clx, removeHtmlTags, getSpeakerNickname } from '~/utils/helpers'
 import { seo } from '~/utils/seo'
@@ -43,7 +43,7 @@ function RouteComponent() {
           <h2 className="text-3xl font-bold mb-6 text-tt-blue">Epizòd</h2>
           <div className="mb-12">
             {speaker.episodes.map((episode, index) => (
-              <Episode key={episode.id} episode={episode}
+              <EpisodeCard key={episode.id} episode={episode}
                 className={clx({
                   'mb-4': index !== speaker.episodes.length - 1,
                 })}
