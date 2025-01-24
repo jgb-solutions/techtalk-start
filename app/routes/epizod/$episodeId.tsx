@@ -1,17 +1,12 @@
 import { createFileRoute, Link, useLocation } from '@tanstack/react-router'
-import { FaCalendarAlt } from 'react-icons/fa'
+import { FaCalendarAlt, FaFacebookSquare, FaShare } from 'react-icons/fa'
+import { FaEnvelope, FaLinkedin, FaTelegram, FaWhatsapp, FaXTwitter } from 'react-icons/fa6'
 import {
   EmailShareButton,
   TwitterShareButton,
   TelegramShareButton,
   FacebookShareButton,
   WhatsappShareButton,
-  FacebookIcon,
-  TelegramIcon,
-  EmailIcon,
-  WhatsappIcon,
-  XIcon,
-  LinkedinIcon,
   LinkedinShareButton
 } from 'react-share'
 import ClientOnly from '~/components/ClientOnly'
@@ -21,7 +16,6 @@ import { FacebookComments } from '~/components/FacebookComments'
 import { Spotify } from '~/components/Spotify'
 import Title from '~/components/Title'
 import * as api from '~/services/requests'
-import colors from '~/utils/colors'
 import { SITE_NAME, SITE_URL, X_HANDLE } from '~/utils/constants'
 import {
   formatDate,
@@ -92,8 +86,8 @@ function EpisodePage() {
         <div className="p-4">
           <div className="flex flex-row items-center mb-8">
             <div className="flex flex-row items-center">
-              <FaCalendarAlt className="mr-1" />
-              <span className="text-sm">{formatDate(episode.date)}</span>
+              <FaCalendarAlt className="w-8 h-8 mr-1" />
+              <span className="font-medium">{formatDate(episode.date)}</span>
             </div>
           </div>
 
@@ -128,13 +122,18 @@ function EpisodePage() {
           )}
 
           <div className="flex items-center">
+
+            <FaShare
+              className={`w-6 h-6 rounded-xl mr-2 `}
+            />
+
             <FacebookShareButton
               url={url}
               title={title}
               hashtag={hashtags.split(' ').join(' #')}
             >
-              <FacebookIcon
-                className={`w-10 h-10 text-[${colors.facebook} rounded-xl mr-2 `}
+              <FaFacebookSquare
+                className={`w-10 h-10 rounded-xl mr-2 `}
               />
             </FacebookShareButton>
 
@@ -144,27 +143,27 @@ function EpisodePage() {
               via={X_HANDLE}
               hashtags={hashtags.split(' ')}
             >
-              <XIcon
-                className={`w-10 h-10 text-[${colors.xBlack}] rounded-xl mr-2`}
+              <FaXTwitter
+                className={`w-10 h-10 rounded-xl mr-2`}
               />
             </TwitterShareButton>
             <LinkedinShareButton url={url} title={title}>
-              <LinkedinIcon
-                className={`w-10 h-10 text-[${colors.linkedin}] rounded-xl mr-2`}
+              <FaLinkedin
+                className={`w-10 h-10 rounded-xl mr-2`}
               />
             </LinkedinShareButton>
             <WhatsappShareButton url={url} title={title}>
-              <WhatsappIcon
-                className={`w-10 h-10 text-[${colors.whatsapp}] rounded-xl mr-2`}
+              <FaWhatsapp
+                className={`w-10 h-10 rounded-xl mr-2`}
               />
             </WhatsappShareButton>
             <TelegramShareButton url={url} title={title}>
-              <TelegramIcon
-                className={`w-10 h-10 text-[${colors.telegram}] rounded-xl mr-2`}
+              <FaTelegram
+                className={`w-10 h-10 rounded-xl mr-2`}
               />
             </TelegramShareButton>
             <EmailShareButton url={url} subject={title} body={title}>
-              <EmailIcon
+              <FaEnvelope
                 className={`w-10 h-10 rounded-xl`}
               />
             </EmailShareButton>

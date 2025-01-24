@@ -1,6 +1,6 @@
 import { pickFields, getModelUrl } from "~/utils/helpers.server"
 
-import type * as PT from '../types/pocketbase-types'
+import type * as PT from '~/types/pocketbase-types'
 import { pb } from './pocketbase'
 import getPhotonUrl from "~/utils/photon"
 import { EPISODE_IMAGE_QUALITY, EPISODE_IMAGE_SIZE } from "~/utils/constants"

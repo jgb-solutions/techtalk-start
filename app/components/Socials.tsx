@@ -9,7 +9,6 @@ export default function Socials() {
       <a
         href={SITE_YOUTUBE_URL}
         className="hover:opacity-80 transition"
-        style={{ color: colors.youtube }}
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -19,7 +18,6 @@ export default function Socials() {
       <a
         href={SITE_INSTAGRAM_URL}
         className="hover:opacity-80 transition"
-        style={{ color: colors.instagram }}
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -29,7 +27,6 @@ export default function Socials() {
       <a
         href={SITE_FACEBOOK_URL}
         className="hover:opacity-80 transition"
-        style={{ color: colors.facebook }}
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -39,7 +36,6 @@ export default function Socials() {
       <a
         href={SITE_X_URL}
         className="hover:opacity-80 transition"
-        style={{ color: colors.xWhite }}
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -49,7 +45,6 @@ export default function Socials() {
       <a
         href={SITE_LINKEDIN_URL}
         className="hover:opacity-80 transition"
-        style={{ color: colors.linkedin }}
         target="_blank"
         rel="noopener noreferrer"
       >
