@@ -3,7 +3,7 @@ export const API_URL = `https://cms.techtalk.cool`
 export const SITE_URL = `https://techtalk.cool`
 export const X_HANDLE = 'jgb_solutions'
 export const SITE_YOUTUBE_URL = `https://www.youtube.com/@JGBSolutions`
-export const SITE_INSTAGRAM_URL = `https://www.instagram.com/jgbgram/?hl=fr`
+export const SITE_INSTAGRAM_URL = `https://www.instagram.com/jgbgram/`
 export const SITE_FACEBOOK_URL = `https://www.facebook.com/jeangerarddev`
 export const SITE_X_URL = `https://x.com/jgb_solutions`
 export const SITE_LINKEDIN_URL = `https://www.linkedin.com/in/jgb-dev/`
