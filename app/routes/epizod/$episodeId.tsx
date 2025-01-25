@@ -56,7 +56,7 @@ function EpisodePage() {
   const { episode } = Route.useLoaderData()
   const youtubeId = getYouTubeIdFromUrl(episode.youtube)
   const url = `${SITE_URL}${location.href}`
-  const title = `Listen to ${episode.title} by ${SITE_NAME}`
+  const title = `Tande  ${episode.title} sou ${SITE_NAME}`
   const hashtags = `${SITE_NAME} techtalk episode share tech talk podcast`
 
   return (
