@@ -1,7 +1,7 @@
 export function FacebookComments({ url }: { url: string }) {
   return (
     <div className="rounded-lg overflow-hidden mt-8">
-      <div className="fb-comments w-full min-w-full" data-lazy data-href={url} data-width="100%" data-numposts="5"></div>
+      <div className="fb-comments w-full [&.iframe]:w-full" data-lazy data-href={url} data-width="100%" data-numposts="5"></div>
       <div id="fb-root"></div>
       <script
         async
