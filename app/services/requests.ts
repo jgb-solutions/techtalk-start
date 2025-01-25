@@ -67,13 +67,13 @@ export async function fetchEpisode(episodeId: string) {
 
   const { image, expand, ...episode } = response
 
-  // const episodeImageUrl = getModelUrl({ model: episode, field: image })
-  // const episodeCdnImageUrl = getPhotonUrl({ src: episodeImageUrl, quality: 100, width: 500 })
+  const episodeImageUrl = getModelUrl({ model: episode, field: image })
+  const episodeCdnImageUrl = getPhotonUrl({ src: episodeImageUrl, quality: 100, width: 500 })
 
   return {
     ...episode,
-    imageUrl: '', // image won't be used on the episode detail page. So avoid computing the CDN link.
-    cdnImageUrl: '', // image won't be used on the episode detail page. So avoid computing the CDN link.
+    imageUrl: episodeImageUrl,
+    cdnImageUrl: episodeCdnImageUrl,
     speakers: expand.speakers.filter(s => s.image).map(({ image, expand, ...speaker }) => {
       const speakerImageUrl = getModelUrl({ model: speaker, field: image })
       const speakerCdnImageUrl = getPhotonUrl({ src: speakerImageUrl, quality: 100, width: 48 })
