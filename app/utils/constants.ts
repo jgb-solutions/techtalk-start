@@ -9,3 +9,4 @@ export const SITE_X_URL = `https://x.com/jgb_solutions`
 export const SITE_LINKEDIN_URL = `https://www.linkedin.com/in/jgb-dev/`
 export const EPISODE_IMAGE_SIZE = 590
 export const EPISODE_IMAGE_QUALITY = 100
+export const FACEBOOK_APP_ID = '1162365798565023'
