@@ -12,8 +12,8 @@
     "check": "bun run tsc --noEmit --watch"
   },
   "dependencies": {
-    "@tanstack/react-router": "^1.97.21",
-    "@tanstack/start": "^1.97.22",
+    "@tanstack/react-router": "^1.97.25",
+    "@tanstack/start": "^1.97.25",
     "@vercel/analytics": "^1.4.1",
     "classnames": "^2.5.1",
     "dayjs": "^1.11.13",
@@ -31,7 +31,7 @@
     "@flydotio/dockerfile": "^0.7.4",
     "@tailwindcss/typography": "^0.5.16",
     "@tanstack/eslint-plugin-router": "^1.97.19",
-    "@tanstack/router-devtools": "^1.97.21",
+    "@tanstack/router-devtools": "^1.97.25",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "@vitejs/plugin-react": "^4.3.4",
