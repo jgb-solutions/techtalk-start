@@ -1,6 +1,5 @@
 import {
   Outlet,
-  ScrollRestoration,
   createRootRoute,
 } from '@tanstack/react-router'
 import { LoadingBarContainer } from "react-top-loading-bar"
@@ -70,8 +69,6 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
         </main>
         <Footer />
 
-
-        <ScrollRestoration />
         <Scripts />
         <RunInProduction>
           <VercelAnalytics />
