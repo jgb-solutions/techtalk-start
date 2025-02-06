@@ -1,28 +1,13 @@
-import { pb } from '~/services/pocketbase'
+import { API_URL } from './constants'
 
-import type { RecordModel } from 'pocketbase'
-
-export const getSearchParams = (request: Request) => new URL(request.url).searchParams
-
-export const getUrl = (request: Request) => new URL(request.url)
-
-
-export const getModelUrl = ({
-  model,
+export const getFileUrl = ({
   field,
-  transform
+  collectionId,
+  modelId
 }: {
-  model: RecordModel
+  collectionId: string
   field: string,
-  transform?: Record<'thumb', string> | Record<string, string>
-}) => {
-
-  const url = pb.files.getURL(model, field, transform)
-
-
-  return url
-}
+  modelId: string
+}) => `${API_URL}/api/files/${collectionId}/${modelId}/${field}`
 
 export const pickFields = (fields: string[]): string => fields.join(',')
-
-export const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
