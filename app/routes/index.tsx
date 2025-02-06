@@ -10,8 +10,8 @@ import { seo } from '~/utils/seo'
 
 export const Route = createFileRoute('/')({
   component: Home,
-  loader: async () => {
-    const episodes = await api.fetchEpisodes()
+  loader: () => {
+    const episodes = api.fetchEpisodes()
 
     return { episodes }
   },
