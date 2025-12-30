@@ -24,7 +24,7 @@ export const Route = createFileRoute('/panelis/$speakerId')({
       meta: [...seo({
         title: `${speaker.name} (${getSpeakerNickname(speaker)})`,
         description: removeHtmlTags(speaker.bio),
-        image: speaker.cdnImageUrl,
+        image: speaker.imageUrl,
       }),
       ]
     }

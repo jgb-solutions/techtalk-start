@@ -182,7 +182,7 @@ export function getCdnUrl(
 ) {
   if (!shouldOptimize) return url
 
-  const domainWithoutProtocol = url.replace(/(^\w+:|^)\/\//, "")
+  const domainWithoutProtocol = url.replace(/^https?:\/\//, "")
 
   const photonHost =
     PHOTON_HOSTS[Math.floor(Math.random() * PHOTON_HOSTS.length)]

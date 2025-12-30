@@ -8,6 +8,6 @@ export const getFileUrl = ({
   collectionId: string
   field: string,
   modelId: string
-}) => `${API_URL}/api/files/${collectionId}/${modelId}/${field}`
+}) => `https://q1f3.c18.e2-5.dev/techtalk/${collectionId}/${modelId}/${field}`
 
 export const pickFields = (fields: string[]): string => fields.join(',')

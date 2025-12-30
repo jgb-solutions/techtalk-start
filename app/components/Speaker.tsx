@@ -25,7 +25,7 @@ export default function Speaker({
             key={speaker.id}
           >
             <img
-              src={speaker.cdnImageUrl}
+              src={speaker.imageUrl}
               alt={speaker.name}
               className="w-48 h-48 rounded-full shadow-lg border-4 border-white"
             />
@@ -115,4 +115,4 @@ export default function Speaker({
       </div>
     </div>
   )
-}
+} 

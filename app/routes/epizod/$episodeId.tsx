@@ -44,7 +44,7 @@ export const Route = createFileRoute('/epizod/$episodeId')({
       meta: [...seo({
         title: episode.title,
         description: episode.description || removeHtmlTags(episode.content),
-        image: episode.cdnImageUrl,
+        image: episode.imageUrl,
       }),
       ]
     }
@@ -103,7 +103,7 @@ function EpisodePage() {
                     title={speaker.name}
                   >
                     <img
-                      src={speaker.cdnImageUrl}
+                      src={speaker.imageUrl}
                       alt={speaker.name}
                       className="max-w-full w-12 h-12 rounded-full"
                     />

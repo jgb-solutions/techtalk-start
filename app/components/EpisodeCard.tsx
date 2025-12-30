@@ -16,7 +16,7 @@ export default function EpisodeCard({
         to="/epizod/$episodeId"
         params={{ episodeId: episode.id }}
       >
-        <img src={episode.cdnImageUrl} alt={episode.title} className="sm:mr-2 sm:w-72" />
+        <img src={episode.imageUrl} alt={episode.title} className="sm:mr-2 sm:w-72" />
         <h3 className="text-2xl p-4 flex-1">
           <span className="font-thin">{formatTitle(episode.title)[0]}:</span><br />
           <span className="font-medium">{formatTitle(episode.title)[1]}</span>
@@ -24,4 +24,4 @@ export default function EpisodeCard({
       </Link>
     </div>
   )
-}
+} 
