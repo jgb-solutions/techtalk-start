@@ -1,6 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
 import Container from '~/components/Container'
-import Socials from '~/components/Socials'
 import Title from '~/components/Title'
 import { seo } from '~/utils/seo'
 

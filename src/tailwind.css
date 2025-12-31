@@ -1,0 +1,25 @@
+@import "tailwindcss" source("../src");
+
+@theme {
+  --font-sans: Inter, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+
+  --color-tt-yellow: #ffa30a;
+  --color-tt-blue: #0066bf;
+}
+
+@plugin "@tailwindcss/typography";
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark, cupcake;
+}
+
+html,
+body {
+  @media (prefers-color-scheme: dark) {
+    color-scheme: dark;
+  }
+}
+
+.fb_iframe_widget_fluid_desktop, .fb_iframe_widget_fluid_desktop span, .fb_iframe_widget_fluid_desktop iframe {
+  max-width: 100% !important;
+  width: 100% !important;
+}

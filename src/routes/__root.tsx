@@ -1,9 +1,9 @@
 import {
   Outlet,
   createRootRoute,
+  HeadContent, Scripts
 } from '@tanstack/react-router'
 import { LoadingBarContainer } from "react-top-loading-bar"
-import { Meta, Scripts } from '@tanstack/start'
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react"
 
 import appCss from "~/tailwind.css?url"
@@ -53,7 +53,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#ffa30a" />
-        <Meta />
+        <HeadContent />
         <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png" />
@@ -77,4 +77,4 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
       </body>
     </html>
   )
-}
+} 

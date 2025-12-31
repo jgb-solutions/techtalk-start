@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from '@tanstack/react-router'
+import { createFileRoute } from '@tanstack/react-router'
 import Container from '~/components/Container'
 import EpisodeCard from '~/components/EpisodeCard'
 import * as api from '~/services/requests'

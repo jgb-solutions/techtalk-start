@@ -1,7 +1,6 @@
 import { SITE_YOUTUBE_URL, SITE_INSTAGRAM_URL, SITE_FACEBOOK_URL, SITE_X_URL, SITE_LINKEDIN_URL } from "~/utils/constants"
 import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube } from "react-icons/fa"
 import { FaXTwitter } from "react-icons/fa6"
-import colors from "~/utils/colors"
 
 export default function Socials() {
   return (
@@ -52,4 +51,4 @@ export default function Socials() {
       </a>
     </div>
   )
-}
+} 
