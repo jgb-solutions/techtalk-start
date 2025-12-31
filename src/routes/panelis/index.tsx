@@ -30,22 +30,30 @@ function Home() {
 
   return (
     <Container>
-      <Title className="text-tt-blue">
+      <Title className="text-tt-blue mb-8">
         <span className="font-thin">Tech Talk:</span>
         <span className="font-medium">Panelis</span>
       </Title>
 
-      <article className="mb-12">
-        {speakers.map((speaker, index) => (
-          <Speaker
-            key={speaker.id}
-            speaker={speaker}
-            className={clx({
-              'mb-4': index !== speakers.length - 1,
-            })}
-          />
-        ))}
-      </article>
+      <div className="mb-8">
+        <div className="flex items-center mb-6">
+          <div className="h-px bg-tt-blue flex-1"></div>
+          <h2 className="px-4 text-xl font-semibold text-tt-blue">Tout Panelis yo</h2>
+          <div className="h-px bg-tt-blue flex-1"></div>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {speakers.map((speaker) => (
+            <Speaker
+              key={speaker.id}
+              speaker={speaker}
+              className={clx({
+                'lg:col-span-1': true,
+              })}
+            />
+          ))}
+        </div>
+      </div>
     </Container>
   )
 }
