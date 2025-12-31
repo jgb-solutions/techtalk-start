@@ -1,6 +1,6 @@
 import { createFileRoute, Link, useLocation } from '@tanstack/react-router'
 import { FaCalendarAlt, FaFacebookSquare, FaShare } from 'react-icons/fa'
-import { FaEnvelope, FaLinkedin, FaTelegram, FaWhatsapp, FaXTwitter } from 'react-icons/fa6'
+import { FaEnvelope, FaLinkedin, FaTelegram, FaWhatsapp, FaXTwitter, FaUsers } from 'react-icons/fa6'
 import {
   EmailShareButton,
   TwitterShareButton,
@@ -61,119 +61,190 @@ function EpisodePage() {
 
   return (
     <Container>
-      <Title className="text-tt-blue">
+      <Title className="text-tt-blue mb-8">
         <span className="font-thin">{formatTitle(episode.title)[0]}:</span>
         <br />
         <span className="font-medium">{formatTitle(episode.title)[1]}</span>
       </Title>
-      <article className="bg-tt-yellow overflow-hidden shadow-lg rounded-xl">
-        {itHas(youtubeId) && (
-          <iframe
-            className="mb-4 aspect-video w-full"
-            src={`https://www.youtube.com/embed/${youtubeId}`}
-            title={episode.title}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
-        )}
 
-        {itHas(episode.spotify) && (
-          <div className="mb-4 p-4">
-            <Spotify wide link={episode.spotify} />
-          </div>
-        )}
+      {/* Main Content Grid - Responsive with better width utilization */}
+      <div className="grid grid-cols-1 xl:grid-cols-4 gap-6 lg:gap-8">
+        {/* Primary Content */}
+        <div className="xl:col-span-3 space-y-6">
+          {/* Media Section */}
+          {(itHas(youtubeId) || itHas(episode.spotify)) && (
+            <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+              {itHas(youtubeId) && (
+                <div className="aspect-video">
+                  <iframe
+                    className="w-full h-full"
+                    src={`https://www.youtube.com/embed/${youtubeId}`}
+                    title={episode.title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+              )}
 
-        <div className="p-4">
-          <div className="flex flex-row items-center mb-8">
-            <div className="flex flex-row items-center">
-              <FaCalendarAlt className="w-8 h-8 mr-1" />
-              <span className="font-medium">{formatDate(episode.date)}</span>
+              {itHas(episode.spotify) && (
+                <div className="p-4 sm:p-6">
+                  <Spotify wide link={episode.spotify} />
+                </div>
+              )}
             </div>
-          </div>
+          )}
 
-          {itHas(episode.speakers.length) && (
-            <div className="flex flex-row items-center mb-4">
-              <div className="flex flex-row items-center flex-wrap">
-                {episode.speakers.map((speaker) => (
-                  <Link
-                    key={speaker.id}
-                    params={{ speakerId: speaker.id }}
-                    to={`/panelis/$speakerId`}
-                    className="text-center mr-2 sm:mr-4 mb-2 sm:mb-4"
-                    title={speaker.name}
-                  >
-                    <img
-                      src={speaker.imageUrl}
-                      alt={speaker.name}
-                      className="max-w-full w-12 h-12 rounded-full"
-                    />
-                    <span className="text-sm">{getSpeakerNickname(speaker)}</span>
-                  </Link>
-                ))}
+          {/* Episode Content */}
+          {itHas(episode.content) && (
+            <div className="bg-white rounded-2xl shadow-lg p-6 lg:p-8">
+              <div className="prose prose-lg max-w-none">
+                <div dangerouslySetInnerHTML={{ __html: episode.content }} />
               </div>
             </div>
           )}
 
-          {itHas(episode.content) && (
-            <div
-              className="prose mb-8"
-              dangerouslySetInnerHTML={{ __html: episode.content }}
-            />
-          )}
-
-          <div className="flex items-center">
-
-            <FaShare
-              className={`w-6 h-6 rounded-xl mr-2 `}
-            />
-
-            <FacebookShareButton
-              url={url}
-              title={title}
-              hashtag={hashtags.split(' ').join(' #')}
-            >
-              <FaFacebookSquare
-                className={`w-10 h-10 rounded-xl mr-2 `}
-              />
-            </FacebookShareButton>
-
-            <TwitterShareButton
-              url={url}
-              title={title}
-              via={X_HANDLE}
-              hashtags={hashtags.split(' ')}
-            >
-              <FaXTwitter
-                className={`w-10 h-10 rounded-xl mr-2`}
-              />
-            </TwitterShareButton>
-            <LinkedinShareButton url={url} title={title}>
-              <FaLinkedin
-                className={`w-10 h-10 rounded-xl mr-2`}
-              />
-            </LinkedinShareButton>
-            <WhatsappShareButton url={url} title={title}>
-              <FaWhatsapp
-                className={`w-10 h-10 rounded-xl mr-2`}
-              />
-            </WhatsappShareButton>
-            <TelegramShareButton url={url} title={title}>
-              <FaTelegram
-                className={`w-10 h-10 rounded-xl mr-2`}
-              />
-            </TelegramShareButton>
-            <EmailShareButton url={url} subject={title} body={title}>
-              <FaEnvelope
-                className={`w-10 h-10 rounded-xl`}
-              />
-            </EmailShareButton>
+          {/* Comments Section - Integrated into main content */}
+          <div className="bg-white rounded-2xl shadow-lg p-6 lg:p-8">
+            <div className="flex items-center space-x-3 mb-6">
+              <div className="flex-shrink-0 w-10 h-10 bg-tt-blue rounded-full flex items-center justify-center">
+                <FaFacebookSquare className="w-5 h-5 text-white" />
+              </div>
+              <div>
+                <p className="font-semibold text-gray-800 text-lg">Vin nan Diskisyon an</p>
+                <p className="text-sm text-gray-600">Pataje panse w yo sou epizòd sa a</p>
+              </div>
+            </div>
+            <ClientOnly>
+              <FacebookComments url={url} />
+            </ClientOnly>
           </div>
         </div>
-      </article>
 
-      <ClientOnly>
-        <FacebookComments url={url} />
-      </ClientOnly>
+        {/* Sidebar - Responsive positioning */}
+        <div className="xl:col-span-1 space-y-6">
+          {/* Episode Info Card */}
+          <div className="bg-tt-yellow rounded-2xl shadow-lg p-4 sm:p-6">
+            <div className="space-y-4">
+              {/* Date */}
+              <div className="flex items-center space-x-3">
+                <div className="flex-shrink-0 w-10 h-10 bg-white rounded-full flex items-center justify-center">
+                  <FaCalendarAlt className="w-5 h-5 text-tt-blue" />
+                </div>
+                <div>
+                  <p className="text-sm font-medium text-gray-600">Dat Piblikasyon</p>
+                  <p className="font-semibold text-sm lg:text-base">{formatDate(episode.date)}</p>
+                </div>
+              </div>
+
+              {/* Speakers */}
+              {itHas(episode.speakers.length) && (
+                <div className="space-y-3">
+                  <div className="flex items-center space-x-3">
+                    <div className="flex-shrink-0 w-10 h-10 bg-white rounded-full flex items-center justify-center">
+                      <FaUsers className="w-5 h-5 text-tt-blue" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-gray-600">Panelis</p>
+                      <p className="font-semibold text-sm lg:text-base">{episode.speakers.length} {episode.speakers.length === 1 ? 'moun' : 'moun'}</p>
+                    </div>
+                  </div>
+
+                  {/* Speaker Avatars - Stack on mobile, grid on larger screens */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
+                    {episode.speakers.map((speaker) => (
+                      <Link
+                        key={speaker.id}
+                        params={{ speakerId: speaker.id }}
+                        to={`/panelis/$speakerId`}
+                        className="group text-center p-3 bg-white rounded-xl hover:shadow-md transition-all duration-200"
+                        title={speaker.name}
+                      >
+                        <img
+                          src={speaker.imageUrl}
+                          alt={speaker.name}
+                          className="w-14 h-14 lg:w-16 lg:h-16 rounded-full mx-auto mb-2 object-cover group-hover:scale-105 transition-transform duration-200"
+                        />
+                        <p className="text-xs lg:text-sm font-medium text-gray-800 group-hover:text-tt-blue transition-colors">
+                          {getSpeakerNickname(speaker)}
+                        </p>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Share Card */}
+          <div className="bg-white rounded-2xl shadow-lg p-4 sm:p-6">
+            <div className="flex items-center space-x-3 mb-4 lg:mb-6">
+              <div className="flex-shrink-0 w-10 h-10 bg-tt-blue rounded-full flex items-center justify-center">
+                <FaShare className="w-5 h-5 text-white" />
+              </div>
+              <div>
+                <p className="font-semibold text-gray-800 text-sm lg:text-base">Pataje epizòd sa a</p>
+                <p className="text-xs lg:text-sm text-gray-600">Ede lòt moun dekouvri nou </p>
+              </div>
+            </div>
+
+            {/* Share Buttons Grid - Responsive */}
+            <div className="grid grid-cols-2 gap-2 lg:gap-3">
+              <FacebookShareButton
+                url={url}
+                title={title}
+                hashtag={hashtags.split(' ').join(' #')}
+                className="group"
+              >
+                <div className="flex items-center justify-center space-x-1 lg:space-x-2 p-2 lg:p-3 rounded-xl border-2 border-gray-200 hover:border-blue-500 hover:bg-blue-50 transition-all duration-200">
+                  <FaFacebookSquare className="w-4 h-4 lg:w-5 lg:h-5 text-blue-600 group-hover:scale-110 transition-transform" />
+                  <span className="text-xs lg:text-sm font-medium text-gray-700 group-hover:text-blue-600">Facebook</span>
+                </div>
+              </FacebookShareButton>
+
+              <TwitterShareButton
+                url={url}
+                title={title}
+                via={X_HANDLE}
+                hashtags={hashtags.split(' ')}
+                className="group"
+              >
+                <div className="flex items-center justify-center space-x-1 lg:space-x-2 p-2 lg:p-3 rounded-xl border-2 border-gray-200 hover:border-black hover:bg-gray-50 transition-all duration-200">
+                  <FaXTwitter className="w-4 h-4 lg:w-5 lg:h-5 text-gray-800 group-hover:scale-110 transition-transform" />
+                  <span className="text-xs lg:text-sm font-medium text-gray-700 group-hover:text-black">X/Twitter</span>
+                </div>
+              </TwitterShareButton>
+
+              <LinkedinShareButton url={url} title={title} className="group">
+                <div className="flex items-center justify-center space-x-1 lg:space-x-2 p-2 lg:p-3 rounded-xl border-2 border-gray-200 hover:border-blue-700 hover:bg-blue-50 transition-all duration-200">
+                  <FaLinkedin className="w-4 h-4 lg:w-5 lg:h-5 text-blue-700 group-hover:scale-110 transition-transform" />
+                  <span className="text-xs lg:text-sm font-medium text-gray-700 group-hover:text-blue-700">LinkedIn</span>
+                </div>
+              </LinkedinShareButton>
+
+              <WhatsappShareButton url={url} title={title} className="group">
+                <div className="flex items-center justify-center space-x-1 lg:space-x-2 p-2 lg:p-3 rounded-xl border-2 border-gray-200 hover:border-green-500 hover:bg-green-50 transition-all duration-200">
+                  <FaWhatsapp className="w-4 h-4 lg:w-5 lg:h-5 text-green-500 group-hover:scale-110 transition-transform" />
+                  <span className="text-xs lg:text-sm font-medium text-gray-700 group-hover:text-green-500">WhatsApp</span>
+                </div>
+              </WhatsappShareButton>
+
+              <TelegramShareButton url={url} title={title} className="group">
+                <div className="flex items-center justify-center space-x-1 lg:space-x-2 p-2 lg:p-3 rounded-xl border-2 border-gray-200 hover:border-blue-500 hover:bg-blue-50 transition-all duration-200">
+                  <FaTelegram className="w-4 h-4 lg:w-5 lg:h-5 text-blue-500 group-hover:scale-110 transition-transform" />
+                  <span className="text-xs lg:text-sm font-medium text-gray-700 group-hover:text-blue-500">Telegram</span>
+                </div>
+              </TelegramShareButton>
+
+              <EmailShareButton url={url} subject={title} body={title} className="group">
+                <div className="flex items-center justify-center space-x-1 lg:space-x-2 p-2 lg:p-3 rounded-xl border-2 border-gray-200 hover:border-gray-500 hover:bg-gray-50 transition-all duration-200">
+                  <FaEnvelope className="w-4 h-4 lg:w-5 lg:h-5 text-gray-600 group-hover:scale-110 transition-transform" />
+                  <span className="text-xs lg:text-sm font-medium text-gray-700 group-hover:text-gray-600">Imel</span>
+                </div>
+              </EmailShareButton>
+            </div>
+          </div>
+        </div>
+      </div>
     </Container>
   )
 }
