@@ -3,6 +3,9 @@ import { tanstackStart } from '@tanstack/react-start/plugin/vite'
 import viteReact from '@vitejs/plugin-react'
 import viteTsConfigPaths from 'vite-tsconfig-paths'
 import tailwindcss from '@tailwindcss/vite'
+import { nitro } from 'nitro/vite'
+
+const preset = process.env.BUILD_TARGET || 'bun'
 
 const config = defineConfig({
   server: {
@@ -19,6 +22,9 @@ const config = defineConfig({
       }
     }),
     tailwindcss(),
+    nitro({
+      preset
+    }),
   ]
 })
 
