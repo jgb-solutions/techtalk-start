@@ -1,6 +1,6 @@
 export const SITE_NAME = `Tech Talk`
-export const API_URL = `https://cms.techtalk.cool`
-export const SITE_URL = `https://techtalk.cool`
+export const API_URL = `https://cms.techtalk.jgb.solutions`
+export const SITE_URL = `https://techtalk.jgb.solutions`
 export const X_HANDLE = 'jgb_solutions'
 export const SITE_YOUTUBE_URL = `https://www.youtube.com/@JGBSolutions`
 export const SITE_INSTAGRAM_URL = `https://www.instagram.com/jgbgram/`

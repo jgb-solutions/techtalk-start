@@ -31,7 +31,7 @@ export const sendContactEmail = createServerFn()
 
       // Send the main contact email
       const mainEmailResult = await resend.emails.send({
-        from: 'Tech Talk Contact <noreply@techtalk.cool>',
+        from: 'Tech Talk Contact <noreply@jgb.solutions>',
         to: ['services@jgb.solutions'],
         subject: `Nouvo mesaj soti nan ${data.name}: ${data.subject}`,
         html: `
@@ -51,7 +51,7 @@ export const sendContactEmail = createServerFn()
               </div>
 
               <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; font-size: 12px; color: #888;">
-                <p>Mesaj sa a voye soti nan fòm kontak Tech Talk sou <a href="https://techtalk.cool" style="color: #0066bf;">techtalk.cool</a></p>
+                <p>Mesaj sa a voye soti nan fòm kontak Tech Talk sou <a href="https://techtalk.jgb.solutions" style="color: #0066bf;">techtalk.jgb.solutions</a></p>
                 <p>Tan: ${new Date().toLocaleString('en-US', { timeZone: 'America/New_York' })} EST</p>
               </div>
             </div>
@@ -67,7 +67,7 @@ export const sendContactEmail = createServerFn()
       // Send auto-reply to the user
       try {
         await resend.emails.send({
-          from: 'Tech Talk Team <noreply@techtalk.cool>',
+          from: 'Tech Talk Team <noreply@techtalk.jgb.solutions>',
           to: [data.email],
           subject: 'Nou resevwa mesaj ou an - Tech Talk',
           html: `
@@ -95,7 +95,7 @@ export const sendContactEmail = createServerFn()
                   <h4 style="color: #0066bf; margin-top: 0;">Kisa ki ka enterese ou:</h4>
                   <ul style="color: #555;">
                     <li>Swiv nou sou <a href="https://youtube.com/@JGBSolutions" style="color: #0066bf;">YouTube</a> pou dènye epizòd yo</li>
-                    <li>Vin jwenn ak kominote a sou <a href="https://techtalk.cool" style="color: #0066bf;">sit entènèt nou an</a></li>
+                    <li>Vin jwenn ak kominote a sou <a href="https://techtalk.jgb.solutions" style="color: #0066bf;">sit entènèt nou an</a></li>
                     <li>Pataje pwojek ou yo ak nou sou sosyal medya yo</li>
                   </ul>
                 </div>
@@ -105,7 +105,7 @@ export const sendContactEmail = createServerFn()
 
                 <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; text-align: center; font-size: 12px; color: #888;">
                   <p>Tech Talk - Pòdkas technologie an kreyòl</p>
-                  <p><a href="https://techtalk.cool" style="color: #0066bf;">techtalk.cool</a> | <a href="mailto:services@jgb.solutions" style="color: #0066bf;">services@jgb.solutions</a></p>
+                  <p><a href="https://techtalk.jgb.solutions" style="color: #0066bf;">techtalk.jgb.solutions</a> | <a href="mailto:services@jgb.solutions" style="color: #0066bf;">services@jgb.solutions</a></p>
                 </div>
               </div>
             </div>
