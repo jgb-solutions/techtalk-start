@@ -11,12 +11,10 @@ export default function SpeakerCardCompact({
 }) {
   return (
     <div className="flex-shrink-0 w-48 h-64">
-      <Link
-        to="/panelis/$speakerId"
-        params={{ speakerId: speaker.id }}
-        className="group block h-full"
-      >
-        <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 h-full flex flex-col">
+      {/* The card links to the speaker; their social links sit beside that link, not inside it
+          (a link inside a link is invalid HTML and broke hydration). */}
+      <div className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 h-full flex flex-col">
+        <Link to="/panelis/$speakerId" params={{ speakerId: speaker.id }} className="flex-1 flex flex-col">
           {/* Speaker Image */}
           <div className="relative flex-shrink-0">
             <img
@@ -27,8 +25,8 @@ export default function SpeakerCardCompact({
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </div>
 
-          {/* Speaker Info - Using flex to ensure consistent height */}
-          <div className="flex-1 flex flex-col justify-between p-4">
+          {/* Speaker Info */}
+          <div className="px-4 pt-4">
             <div>
               <h3 className="font-semibold text-gray-800 text-sm mb-1 group-hover:text-tt-blue transition-colors line-clamp-1">
                 {getSpeakerNickname(speaker)}
@@ -37,17 +35,18 @@ export default function SpeakerCardCompact({
                 {speaker.name}
               </p>
             </div>
+          </div>
+        </Link>
 
-            {/* Social Links - Always at bottom */}
-            <div className="flex justify-center space-x-2 mt-auto">
+        {/* Social Links - Always at bottom */}
+        <div className="flex justify-center space-x-2 mt-auto px-4 pb-4">
               {speaker.youtube && (
                 <a
                   href={speaker.youtube}
                   className="p-1 text-red-500 hover:text-red-600 transition-colors"
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={(e) => e.stopPropagation()}
-                  title="YouTube"
+                                    title="YouTube"
                 >
                   <FaYoutube className="w-3 h-3" />
                 </a>
@@ -58,8 +57,7 @@ export default function SpeakerCardCompact({
                   className="p-1 text-pink-500 hover:text-pink-600 transition-colors"
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={(e) => e.stopPropagation()}
-                  title="Instagram"
+                                    title="Instagram"
                 >
                   <FaInstagram className="w-3 h-3" />
                 </a>
@@ -70,8 +68,7 @@ export default function SpeakerCardCompact({
                   className="p-1 text-blue-500 hover:text-blue-600 transition-colors"
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={(e) => e.stopPropagation()}
-                  title="Facebook"
+                                    title="Facebook"
                 >
                   <FaFacebook className="w-3 h-3" />
                 </a>
@@ -82,8 +79,7 @@ export default function SpeakerCardCompact({
                   className="p-1 text-gray-700 hover:text-black transition-colors"
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={(e) => e.stopPropagation()}
-                  title="X (Twitter)"
+                                    title="X (Twitter)"
                 >
                   <FaXTwitter className="w-3 h-3" />
                 </a>
@@ -94,16 +90,13 @@ export default function SpeakerCardCompact({
                   className="p-1 text-blue-600 hover:text-blue-700 transition-colors"
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={(e) => e.stopPropagation()}
-                  title="LinkedIn"
+                                    title="LinkedIn"
                 >
                   <FaLinkedin className="w-3 h-3" />
                 </a>
               )}
-            </div>
-          </div>
         </div>
-      </Link>
+      </div>
     </div>
   )
 } 
