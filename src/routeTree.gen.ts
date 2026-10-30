@@ -9,16 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as PrivacyRouteImport } from './routes/privacy'
-import { Route as KontakRouteImport } from './routes/kontak'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as KontakRouteImport } from './routes/kontak'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as EpizodEpisodeIdRouteImport } from './routes/epizod/$episodeId'
 import { Route as PanelisIndexRouteImport } from './routes/panelis/index'
 import { Route as PanelisSpeakerIdRouteImport } from './routes/panelis/$speakerId'
-import { Route as EpizodEpisodeIdRouteImport } from './routes/epizod/$episodeId'
 
-const PrivacyRoute = PrivacyRouteImport.update({
-  id: '/privacy',
-  path: '/privacy',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const KontakRoute = KontakRouteImport.update({
@@ -26,9 +26,14 @@ const KontakRoute = KontakRouteImport.update({
   path: '/kontak',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EpizodEpisodeIdRoute = EpizodEpisodeIdRouteImport.update({
+  id: '/epizod/$episodeId',
+  path: '/epizod/$episodeId',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PanelisIndexRoute = PanelisIndexRouteImport.update({
@@ -41,11 +46,6 @@ const PanelisSpeakerIdRoute = PanelisSpeakerIdRouteImport.update({
   path: '/panelis/$speakerId',
   getParentRoute: () => rootRouteImport,
 } as any)
-const EpizodEpisodeIdRoute = EpizodEpisodeIdRouteImport.update({
-  id: '/epizod/$episodeId',
-  path: '/epizod/$episodeId',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -53,7 +53,7 @@ export interface FileRoutesByFullPath {
   '/privacy': typeof PrivacyRoute
   '/epizod/$episodeId': typeof EpizodEpisodeIdRoute
   '/panelis/$speakerId': typeof PanelisSpeakerIdRoute
-  '/panelis': typeof PanelisIndexRoute
+  '/panelis/': typeof PanelisIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -80,7 +80,7 @@ export interface FileRouteTypes {
     | '/privacy'
     | '/epizod/$episodeId'
     | '/panelis/$speakerId'
-    | '/panelis'
+    | '/panelis/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -110,11 +110,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/privacy': {
-      id: '/privacy'
-      path: '/privacy'
-      fullPath: '/privacy'
-      preLoaderRoute: typeof PrivacyRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/kontak': {
@@ -124,17 +124,24 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof KontakRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/epizod/$episodeId': {
+      id: '/epizod/$episodeId'
+      path: '/epizod/$episodeId'
+      fullPath: '/epizod/$episodeId'
+      preLoaderRoute: typeof EpizodEpisodeIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/panelis/': {
       id: '/panelis/'
       path: '/panelis'
-      fullPath: '/panelis'
+      fullPath: '/panelis/'
       preLoaderRoute: typeof PanelisIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
@@ -143,13 +150,6 @@ declare module '@tanstack/react-router' {
       path: '/panelis/$speakerId'
       fullPath: '/panelis/$speakerId'
       preLoaderRoute: typeof PanelisSpeakerIdRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/epizod/$episodeId': {
-      id: '/epizod/$episodeId'
-      path: '/epizod/$episodeId'
-      fullPath: '/epizod/$episodeId'
-      preLoaderRoute: typeof EpizodEpisodeIdRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
