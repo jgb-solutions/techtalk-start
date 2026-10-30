@@ -3,6 +3,7 @@ import Container from "./Container"
 import { Link } from "@tanstack/react-router"
 import Socials from "./Socials"
 import PodcastPlatform from "./PodcastPlatform"
+import JgbFooter from "./JgbFooter"
 
 export default function Footer() {
   return (
@@ -14,10 +15,11 @@ export default function Footer() {
           <Link to="/"><img className="w-24 mb-4" src="/assets/images/techtalk-logo@4x.png" alt={SITE_NAME} /></Link>
           <div className="flex flex-col items-center sm:items-end">
             <Socials />
-            <p className="font-medium">&copy; 2025</p>
+            <p className="font-medium">&copy; <span suppressHydrationWarning>{new Date().getFullYear()}</span> {SITE_NAME}</p>
           </div>
         </div>
       </Container>
+      <JgbFooter />
     </footer>
   )
 }
