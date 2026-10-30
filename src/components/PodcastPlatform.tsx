@@ -1,6 +1,8 @@
 import colors from "~/utils/colors"
+import { clx } from "~/utils/helpers"
 
-export default function Footer() {
+/** Where to listen: one colored button per platform. `className` sets the layout (a grid in the hero). */
+export default function PodcastPlatform({ className }: { className?: string }) {
   const platforms = [
     {
       name: "Spotify",
@@ -34,10 +36,10 @@ export default function Footer() {
     }
   ]
   return (
-    <div className="grid grid-cols-2 sm:flex sm:justify-around sm:flex-wrap gap-2">
+    <div className={className ?? "grid grid-cols-2 sm:flex sm:justify-around sm:flex-wrap gap-2"}>
       {platforms.map((platform) => (
         <a
-          className="btn btn-sm border-none"
+          className={clx("btn btn-sm border-none", className && "w-full justify-start")}
           target="_blank"
           rel="noopener noreferrer"
           style={{ backgroundColor: platform.color }}
