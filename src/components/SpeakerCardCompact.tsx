@@ -10,92 +10,75 @@ export default function SpeakerCardCompact({
   speaker: ISpeakerCard
 }) {
   return (
-    <div className="flex-shrink-0 w-48 h-64">
-      {/* The card links to the speaker; their social links sit beside that link, not inside it
-          (a link inside a link is invalid HTML and broke hydration). */}
-      <div className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 h-full flex flex-col">
-        <Link to="/panelis/$speakerId" params={{ speakerId: speaker.id }} className="flex-1 flex flex-col">
-          {/* Speaker Image */}
-          <div className="relative flex-shrink-0">
-            <img
-              src={speaker.imageUrl}
-              alt={speaker.name}
-              className="w-full h-32 object-cover group-hover:scale-105 transition-transform duration-300"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-          </div>
-
-          {/* Speaker Info */}
-          <div className="px-4 pt-4">
-            <div>
-              <h3 className="font-semibold text-gray-800 text-sm mb-1 group-hover:text-tt-blue transition-colors line-clamp-1">
-                {getSpeakerNickname(speaker)}
-              </h3>
-              <p className="text-xs text-gray-600 mb-3 line-clamp-2">
-                {speaker.name}
-              </p>
-            </div>
-          </div>
-        </Link>
-
-        {/* Social Links - Always at bottom */}
-        <div className="flex justify-center space-x-2 mt-auto px-4 pb-4">
-              {speaker.youtube && (
+    // One size for every card, photo in a ring, names centred, socials on one line at the bottom.
+    // The card links to the speaker; their social links sit beside that link, not inside it.
+    <div className="group flex h-60 w-44 flex-col items-center rounded-2xl bg-white px-4 pt-5 pb-4 text-center shadow-sm ring-1 ring-black/5 transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+      <Link to="/panelis/$speakerId" params={{ speakerId: speaker.id }} className="flex flex-col items-center">
+        <img
+          src={speaker.imageUrl}
+          alt=""
+          loading="lazy"
+          className="size-24 rounded-full object-cover ring-4 ring-tt-yellow/80 transition duration-300 group-hover:ring-tt-yellow"
+        />
+        <h3 className="mt-3 line-clamp-1 font-semibold text-gray-900 group-hover:text-tt-blue">{getSpeakerNickname(speaker)}</h3>
+        <p className="line-clamp-1 text-xs text-gray-500">{speaker.name}</p>
+      </Link>
+      <div className="mt-auto flex h-7 items-center justify-center gap-0.5">
+        {speaker.youtube && (
                 <a
                   href={speaker.youtube}
-                  className="p-1 text-red-500 hover:text-red-600 transition-colors"
+                  className="p-1.5 rounded-full text-red-500 hover:text-red-600 transition-colors"
                   target="_blank"
                   rel="noopener noreferrer"
                                     title="YouTube"
                 >
-                  <FaYoutube className="w-3 h-3" />
+                  <FaYoutube className="w-3.5 h-3.5" />
                 </a>
               )}
               {speaker.instagram && (
                 <a
                   href={speaker.instagram}
-                  className="p-1 text-pink-500 hover:text-pink-600 transition-colors"
+                  className="p-1.5 rounded-full text-pink-500 hover:text-pink-600 transition-colors"
                   target="_blank"
                   rel="noopener noreferrer"
                                     title="Instagram"
                 >
-                  <FaInstagram className="w-3 h-3" />
+                  <FaInstagram className="w-3.5 h-3.5" />
                 </a>
               )}
               {speaker.facebook && (
                 <a
                   href={speaker.facebook}
-                  className="p-1 text-blue-500 hover:text-blue-600 transition-colors"
+                  className="p-1.5 rounded-full text-blue-500 hover:text-blue-600 transition-colors"
                   target="_blank"
                   rel="noopener noreferrer"
                                     title="Facebook"
                 >
-                  <FaFacebook className="w-3 h-3" />
+                  <FaFacebook className="w-3.5 h-3.5" />
                 </a>
               )}
               {speaker.x && (
                 <a
                   href={speaker.x}
-                  className="p-1 text-gray-700 hover:text-black transition-colors"
+                  className="p-1.5 rounded-full text-gray-700 hover:text-black transition-colors"
                   target="_blank"
                   rel="noopener noreferrer"
                                     title="X (Twitter)"
                 >
-                  <FaXTwitter className="w-3 h-3" />
+                  <FaXTwitter className="w-3.5 h-3.5" />
                 </a>
               )}
               {speaker.linkedin && (
                 <a
                   href={speaker.linkedin}
-                  className="p-1 text-blue-600 hover:text-blue-700 transition-colors"
+                  className="p-1.5 rounded-full text-blue-600 hover:text-blue-700 transition-colors"
                   target="_blank"
                   rel="noopener noreferrer"
                                     title="LinkedIn"
                 >
-                  <FaLinkedin className="w-3 h-3" />
+                  <FaLinkedin className="w-3.5 h-3.5" />
                 </a>
               )}
-        </div>
       </div>
     </div>
   )

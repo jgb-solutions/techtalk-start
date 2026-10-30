@@ -38,31 +38,44 @@
   -webkit-line-clamp: 2;
 }
 
-/* Infinite scroll animation */
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-33.333%);
+/* Panelists marquee (home page): the track holds the list twice and slides left by one copy. */
+@keyframes speakers-marquee {
+  to {
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
-.animate-scroll {
-  animation: scroll 20s linear infinite;
+.speakers-marquee {
+  mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
 }
 
-/* Pause animation on hover */
-.animate-scroll:hover {
+.speakers-track {
+  animation: speakers-marquee linear infinite;
+  will-change: transform;
+}
+
+.speakers-marquee:hover .speakers-track,
+.speakers-marquee:focus-within .speakers-track {
   animation-play-state: paused;
 }
 
-/* Visitors who ask for less motion get a still, swipeable row. */
+/* Visitors who ask for less motion get a still row they can swipe. */
 @media (prefers-reduced-motion: reduce) {
-  .animate-scroll {
+  .speakers-marquee {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
+  .speakers-track {
     animation: none;
   }
+  .speakers-track > ul[aria-hidden] {
+    display: none;
+  }
+  .speakers-track li {
+    scroll-snap-align: start;
+  }
 }
+
 
 html,
 body {
