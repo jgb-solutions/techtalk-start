@@ -12,7 +12,7 @@ export const contactSchema = z.object({
 
 // TanStack Start server function for sending contact emails
 export const sendContactEmail = createServerFn()
-  .inputValidator(contactSchema)
+  .validator(contactSchema)
   .handler(async (ctx) => {
     try {
       // Extract and validate the input data

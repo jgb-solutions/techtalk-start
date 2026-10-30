@@ -1,4 +1,4 @@
-import { getFileUrl } from "~/utils/helpers.server"
+import { getFileUrl } from "~/utils/files"
 
 import * as data from '~/data'
 
