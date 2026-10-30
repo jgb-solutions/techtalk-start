@@ -57,6 +57,13 @@
   animation-play-state: paused;
 }
 
+/* Visitors who ask for less motion get a still, swipeable row. */
+@media (prefers-reduced-motion: reduce) {
+  .animate-scroll {
+    animation: none;
+  }
+}
+
 html,
 body {
   @media (prefers-color-scheme: dark) {

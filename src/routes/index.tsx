@@ -3,7 +3,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import Container from '~/components/Container'
 import EpisodeCard from '~/components/EpisodeCard'
 import SpeakerCardCompact from '~/components/SpeakerCardCompact'
-import Title from '~/components/Title'
+import PodcastPlatform from '~/components/PodcastPlatform'
 import * as api from '~/services/requests'
 import { seo } from '~/utils/seo'
 
@@ -34,42 +34,54 @@ function Home() {
   // Create infinite scroll by duplicating speakers
   const infiniteSpeakers = [...speakers, ...speakers, ...speakers]
 
+  const [latest, ...rest] = episodes
+
   return (
-    <Container>
-      <Title className="text-tt-blue mb-8">
-        <span className="font-thin">Tech Talk:</span>
-        <span className="font-medium">An N Pale Teknoloji</span>
-      </Title>
-
-      {/* Episodes Section */}
-      {episodes.length > 0 && (
-        <div className="mb-12">
-          <div className="flex items-center mb-8">
-            <div className="h-px bg-tt-blue flex-1"></div>
-            <h2 className="px-4 text-2xl font-bold text-tt-blue">Epizòd yo</h2>
-            <div className="h-px bg-tt-blue flex-1"></div>
+    <>
+      {/* Hero: black like the header, the show's promise, where to listen, the latest episode. */}
+      <section className="bg-black text-white">
+        <Container className="grid items-center gap-10 pb-14 pt-6 lg:grid-cols-[1fr_1.1fr]">
+          <div>
+            <p className="mb-4 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-sm font-semibold text-tt-yellow">
+              <span className="size-2 rounded-full bg-tt-yellow" aria-hidden="true" />
+              Pòdkas teknoloji an kreyòl
+            </p>
+            <h1 className="text-5xl font-bold leading-tight sm:text-6xl">
+              <span className="font-thin">Tech Talk:</span>{" "}
+              <span className="text-tt-yellow">An N Pale Teknoloji</span>
+            </h1>
+            <p className="mt-5 max-w-xl text-lg text-white/75">
+              Chak epizòd, panelis yo pale sou sa k ap pase nan teknoloji, entènèt ak biznis dijital, an kreyòl ayisyen.
+            </p>
+            <p className="mt-8 mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-white/60">Koute sou</p>
+            <PodcastPlatform />
           </div>
+          {latest && (
+            <div>
+              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-white/60">Dènye epizòd</p>
+              <EpisodeCard episode={latest} featured />
+            </div>
+          )}
+        </Container>
+      </section>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {episodes.map((episode) => (
-              <EpisodeCard
-                key={episode.id}
-                episode={episode}
-                className="transform hover:scale-105 transition-transform duration-200"
-              />
+      <Container>
+      {/* Episodes Section */}
+      {rest.length > 0 && (
+        <section className="mt-10 mb-14" aria-labelledby="episodes-heading">
+          <SectionHeading id="episodes-heading">Epizòd yo</SectionHeading>
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {rest.map((episode) => (
+              <EpisodeCard key={episode.id} episode={episode} />
             ))}
           </div>
-        </div>
+        </section>
       )}
 
       {/* Speakers Section */}
       {speakers.length > 0 && (
-        <div className="mb-8">
-          <div className="flex items-center mb-8">
-            <div className="h-px bg-tt-blue flex-1"></div>
-            <h2 className="px-4 text-2xl font-bold text-tt-blue">Panelis yo</h2>
-            <div className="h-px bg-tt-blue flex-1"></div>
-          </div>
+        <section className="mb-12" aria-labelledby="speakers-heading">
+          <SectionHeading id="speakers-heading">Panelis yo</SectionHeading>
 
           {/* Horizontal Scrolling Speakers with Infinite Loop */}
           <div className="relative overflow-hidden">
@@ -82,17 +94,8 @@ function Home() {
               ))}
             </div>
 
-            {/* Scroll indicators */}
-            <div className="flex justify-center mt-4 space-x-2">
-              {speakers.map((_, index) => (
-                <div
-                  key={index}
-                  className="w-2 h-2 bg-gray-300 rounded-full opacity-50"
-                />
-              ))}
-            </div>
           </div>
-        </div>
+        </section>
       )}
 
       {/* Empty State */}
@@ -110,5 +113,19 @@ function Home() {
         </div>
       )}
     </Container>
+    </>
+  )
+}
+
+/** A section title between two thin blue lines, as on the original design. */
+function SectionHeading({ id, children }: { id: string; children: React.ReactNode }) {
+  return (
+    <div className="mb-8 flex items-center gap-4">
+      <div className="h-px flex-1 bg-tt-blue/40" />
+      <h2 id={id} className="text-2xl font-bold text-tt-blue sm:text-3xl">
+        {children}
+      </h2>
+      <div className="h-px flex-1 bg-tt-blue/40" />
+    </div>
   )
 }

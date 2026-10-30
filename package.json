@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
-    "build": "vite build",
+    "build": "bun scripts/sync-products.ts && vite build",
     "start": "bun .output/server/index.mjs",
     "typecheck": "tsc",
     "check": "bun run tsc --noEmit --watch"
