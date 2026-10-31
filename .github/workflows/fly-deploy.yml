@@ -5,10 +5,14 @@ on:
   push:
     branches:
       - main
+# Where jobs run: the repo variable CI_RUNNER (Settings → Secrets and variables → Actions →
+# Variables). "beelink" sends them to the self-hosted runner on the Beelink server (owner's choice,
+# 2026-10-31, while GitHub-hosted minutes were blocked; setup in /srv/ci-runners there). Delete the
+# variable to go back to GitHub's runners.
 jobs:
   deploy:
     name: Deploy app
-    runs-on: ubuntu-latest
+    runs-on: ${{ vars.CI_RUNNER || 'ubuntu-latest' }}
     concurrency: deploy-group    # optional: ensure only one action runs at a time
     steps:
       - uses: actions/checkout@v4
