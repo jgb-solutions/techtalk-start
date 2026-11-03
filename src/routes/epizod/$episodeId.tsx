@@ -3,7 +3,7 @@ import { FaCalendarAlt, FaFacebookSquare, FaShare } from 'react-icons/fa'
 import { FaEnvelope, FaLinkedin, FaTelegram, FaWhatsapp, FaXTwitter, FaUsers } from 'react-icons/fa6'
 import {
   EmailShareButton,
-  TwitterShareButton,
+  XShareButton,
   TelegramShareButton,
   FacebookShareButton,
   WhatsappShareButton,
@@ -201,9 +201,9 @@ function EpisodePage() {
                 </div>
               </FacebookShareButton>
 
-              <TwitterShareButton
+              <XShareButton
                 url={url}
-                title={title}
+                text={title}
                 via={X_HANDLE}
                 hashtags={hashtags.split(' ')}
                 className="group"
@@ -212,23 +212,23 @@ function EpisodePage() {
                   <FaXTwitter className="w-4 h-4 lg:w-5 lg:h-5 text-gray-800 group-hover:scale-110 transition-transform" />
                   <span className="text-xs lg:text-sm font-medium text-gray-700 group-hover:text-black">X/Twitter</span>
                 </div>
-              </TwitterShareButton>
+              </XShareButton>
 
-              <LinkedinShareButton url={url} title={title} className="group">
+              <LinkedinShareButton url={url} className="group">
                 <div className="flex items-center justify-center space-x-1 lg:space-x-2 p-2 lg:p-3 rounded-xl border-2 border-gray-200 hover:border-blue-700 hover:bg-blue-50 transition-all duration-200">
                   <FaLinkedin className="w-4 h-4 lg:w-5 lg:h-5 text-blue-700 group-hover:scale-110 transition-transform" />
                   <span className="text-xs lg:text-sm font-medium text-gray-700 group-hover:text-blue-700">LinkedIn</span>
                 </div>
               </LinkedinShareButton>
 
-              <WhatsappShareButton url={url} title={title} className="group">
+              <WhatsappShareButton url={url} message={title} className="group">
                 <div className="flex items-center justify-center space-x-1 lg:space-x-2 p-2 lg:p-3 rounded-xl border-2 border-gray-200 hover:border-green-500 hover:bg-green-50 transition-all duration-200">
                   <FaWhatsapp className="w-4 h-4 lg:w-5 lg:h-5 text-green-500 group-hover:scale-110 transition-transform" />
                   <span className="text-xs lg:text-sm font-medium text-gray-700 group-hover:text-green-500">WhatsApp</span>
                 </div>
               </WhatsappShareButton>
 
-              <TelegramShareButton url={url} title={title} className="group">
+              <TelegramShareButton url={url} text={title} className="group">
                 <div className="flex items-center justify-center space-x-1 lg:space-x-2 p-2 lg:p-3 rounded-xl border-2 border-gray-200 hover:border-blue-500 hover:bg-blue-50 transition-all duration-200">
                   <FaTelegram className="w-4 h-4 lg:w-5 lg:h-5 text-blue-500 group-hover:scale-110 transition-transform" />
                   <span className="text-xs lg:text-sm font-medium text-gray-700 group-hover:text-blue-500">Telegram</span>
